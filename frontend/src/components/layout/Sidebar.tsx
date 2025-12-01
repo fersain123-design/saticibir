@@ -55,8 +55,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive(item.path)
-                    ? 'bg-green-50 text-green-600 font-medium'
-                    : 'text-gray-600 hover:bg-gray-50'
+                    ? 'bg-primary-50 text-primary font-medium'
+                    : 'text-text-secondary hover:bg-background'
                 }`}
               >
                 <span className="text-xl">{item.icon}</span>
@@ -66,8 +66,8 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t text-sm text-gray-500">
-            © 2024 Satıcı Paneli
+          <div className="p-4 border-t text-sm text-text-secondary">
+            © 2024 Manavım - Satıcı Paneli
           </div>
         </div>
       </aside>
