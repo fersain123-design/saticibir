@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { productsAPI } from '../services/api';
+import { productsAPI } from '../services/api.ts';
 import { Product } from '../types';
 
 const Products: React.FC = () => {

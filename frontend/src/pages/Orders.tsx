@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ordersAPI } from '../services/api';
+import { ordersAPI } from '../services/api.ts';
 import { Order } from '../types';
 
 const Orders: React.FC = () => {

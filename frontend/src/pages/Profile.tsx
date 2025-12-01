@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { vendorAPI, authAPI } from '../services/api';
+import { vendorAPI, authAPI } from '../services/api.ts';
 
 const Profile: React.FC = () => {
   const { vendor, refreshVendor } = useAuth();
