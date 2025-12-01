@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import MainLayout from './components/layout/MainLayout';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
-import Products from './pages/Products';
-import Orders from './pages/Orders';
-import Profile from './pages/Profile';
+import { AuthProvider, useAuth } from './context/AuthContext.tsx';
+import MainLayout from './components/layout/MainLayout.tsx';
+import Login from './pages/Login.tsx';
+import Register from './pages/Register.tsx';
+import Dashboard from './pages/Dashboard.tsx';
+import Products from './pages/Products.tsx';
+import Orders from './pages/Orders.tsx';
+import Profile from './pages/Profile.tsx';
 import './App.css';
 
 const PrivateRoute = ({ children }) => {
