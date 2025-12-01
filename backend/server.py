@@ -211,9 +211,7 @@ async def login_vendor(login_data: VendorLogin):
 
 @api_router.get("/vendor/me")
 async def get_me(vendor: dict = Depends(get_current_vendor)):
-    # MongoDB _id'yi çıkar
-    vendor_data = {k: v for k, v in vendor.items() if k != "_id"}
-    return {"success": True, "data": {"vendor": vendor_data}}
+    return {"success": True, "data": {"vendor": clean_mongo_doc(vendor)}}
 
 # DASHBOARD
 @api_router.get("/vendor/dashboard")
