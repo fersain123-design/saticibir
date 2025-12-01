@@ -223,22 +223,84 @@ async def get_me(vendor: dict = Depends(get_current_vendor)):
 # DASHBOARD
 @api_router.get("/vendor/dashboard")
 async def get_dashboard(vendor: dict = Depends(require_approved_vendor)):
+    vendor_id = vendor["id"]
     now = datetime.utcnow()
     today_start = now.replace(hour=0, minute=0, second=0)
     week_start = now - timedelta(days=7)
+    month_start = now - timedelta(days=30)
     
-    today_orders = await db.orders.count_documents({"vendor_id": vendor["id"], "created_at": {"$gte": today_start}})
-    week_orders = await db.orders.count_documents({"vendor_id": vendor["id"], "created_at": {"$gte": week_start}})
-    pending_orders = await db.orders.count_documents({"vendor_id": vendor["id"], "status": "pending"})
-    total_products = await db.products.count_documents({"vendor_id": vendor["id"]})
+    # Today stats
+    today_orders = await db.orders.count_documents({"vendor_id": vendor_id, "created_at": {"$gte": today_start}})
+    today_revenue_pipeline = await db.orders.aggregate([
+        {"$match": {"vendor_id": vendor_id, "created_at": {"$gte": today_start}, "status": {"$ne": "cancelled"}}},
+        {"$group": {"_id": None, "total": {"$sum": "$total"}}}
+    ]).to_list(1)
+    today_revenue = today_revenue_pipeline[0]["total"] if today_revenue_pipeline else 0
+    
+    # Week stats
+    week_orders = await db.orders.count_documents({"vendor_id": vendor_id, "created_at": {"$gte": week_start}})
+    week_revenue_pipeline = await db.orders.aggregate([
+        {"$match": {"vendor_id": vendor_id, "created_at": {"$gte": week_start}, "status": {"$ne": "cancelled"}}},
+        {"$group": {"_id": None, "total": {"$sum": "$total"}}}
+    ]).to_list(1)
+    week_revenue = week_revenue_pipeline[0]["total"] if week_revenue_pipeline else 0
+    
+    # Month stats
+    month_orders = await db.orders.count_documents({"vendor_id": vendor_id, "created_at": {"$gte": month_start}})
+    month_revenue_pipeline = await db.orders.aggregate([
+        {"$match": {"vendor_id": vendor_id, "created_at": {"$gte": month_start}, "status": {"$ne": "cancelled"}}},
+        {"$group": {"_id": None, "total": {"$sum": "$total"}}}
+    ]).to_list(1)
+    month_revenue = month_revenue_pipeline[0]["total"] if month_revenue_pipeline else 0
+    
+    # Pending orders
+    pending_orders = await db.orders.count_documents({"vendor_id": vendor_id, "status": "pending"})
+    
+    # Product stats
+    total_products = await db.products.count_documents({"vendor_id": vendor_id})
+    active_products = await db.products.count_documents({"vendor_id": vendor_id, "status": "active"})
+    low_stock_products = await db.products.count_documents({
+        "vendor_id": vendor_id,
+        "$expr": {"$lte": ["$stock", "$min_stock_threshold"]}
+    })
+    
+    # Recent orders
+    recent_orders = await db.orders.find({"vendor_id": vendor_id}).sort("created_at", -1).limit(10).to_list(10)
+    
+    # Chart data (last 7 days)
+    chart_data = []
+    for i in range(6, -1, -1):
+        date = now - timedelta(days=i)
+        date_start = date.replace(hour=0, minute=0, second=0, microsecond=0)
+        date_end = date_start + timedelta(days=1)
+        
+        day_orders = await db.orders.count_documents({
+            "vendor_id": vendor_id,
+            "created_at": {"$gte": date_start, "$lt": date_end}
+        })
+        
+        day_revenue_pipeline = await db.orders.aggregate([
+            {"$match": {"vendor_id": vendor_id, "created_at": {"$gte": date_start, "$lt": date_end}, "status": {"$ne": "cancelled"}}},
+            {"$group": {"_id": None, "total": {"$sum": "$total"}}}
+        ]).to_list(1)
+        day_revenue = day_revenue_pipeline[0]["total"] if day_revenue_pipeline else 0
+        
+        chart_data.append({
+            "date": date_start.strftime("%Y-%m-%d"),
+            "orders": day_orders,
+            "revenue": day_revenue
+        })
     
     return {
         "success": True,
         "data": {
-            "today": {"orders": today_orders},
-            "week": {"orders": week_orders},
+            "today": {"orders": today_orders, "revenue": today_revenue},
+            "week": {"orders": week_orders, "revenue": week_revenue},
+            "month": {"orders": month_orders, "revenue": month_revenue},
             "pending": {"orders": pending_orders},
-            "products": {"total": total_products}
+            "products": {"total": total_products, "active": active_products, "low_stock": low_stock_products},
+            "recent_orders": clean_mongo_doc(recent_orders),
+            "chart_data": chart_data
         }
     }
 
