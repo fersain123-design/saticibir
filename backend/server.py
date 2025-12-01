@@ -46,6 +46,14 @@ api_router = APIRouter(prefix="/api")
 
 # ==== UTILITY FUNCTIONS ====
 
+def clean_mongo_doc(doc):
+    """MongoDB _id alanını çıkar"""
+    if isinstance(doc, dict):
+        return {k: v for k, v in doc.items() if k != "_id"}
+    elif isinstance(doc, list):
+        return [clean_mongo_doc(item) for item in doc]
+    return doc
+
 def hash_password(password: str) -> str:
     return pwd_context.hash(password)
 
