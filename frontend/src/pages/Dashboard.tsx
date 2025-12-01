@@ -152,7 +152,7 @@ const Dashboard: React.FC = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Line type="monotone" dataKey="orders" stroke="#16a34a" name="Siparişler" />
+                <Line type="monotone" dataKey="orders" stroke="#0A5C36" name="Siparişler" strokeWidth={2} />
               </LineChart>
             </ResponsiveContainer>
           </div>
