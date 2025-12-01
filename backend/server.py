@@ -246,7 +246,7 @@ async def create_product(product: ProductCreate, vendor: dict = Depends(require_
     product_id = str(uuid.uuid4())
     new_product = {"id": product_id, "vendor_id": vendor["id"], **product.model_dump(), "created_at": datetime.utcnow()}
     await db.products.insert_one(new_product)
-    return {"success": True, "data": {"product": new_product}}
+    return {"success": True, "data": {"product": clean_mongo_doc(new_product)}}
 
 @api_router.delete("/vendor/products/{product_id}")
 async def delete_product(product_id: str, vendor: dict = Depends(require_approved_vendor)):
