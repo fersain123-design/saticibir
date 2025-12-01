@@ -62,7 +62,7 @@ export interface IProduct extends Document {
 }
 
 export interface IOrder extends Document {
-  _id: string;
+  _id: Types.ObjectId;
   vendorId: string;
   orderNumber: string;
   customerInfo: {
