@@ -45,7 +45,7 @@ export interface IVendor extends Document {
 }
 
 export interface IProduct extends Document {
-  _id: string;
+  _id: Types.ObjectId;
   vendorId: string;
   name: string;
   category: string;
