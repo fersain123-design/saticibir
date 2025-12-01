@@ -166,7 +166,7 @@ const Dashboard: React.FC = () => {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="revenue" fill="#16a34a" name="Gelir (₺)" />
+                <Bar dataKey="revenue" fill="#0A5C36" name="Gelir (₺)" />
               </BarChart>
             </ResponsiveContainer>
           </div>
