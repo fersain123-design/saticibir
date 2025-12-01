@@ -95,7 +95,7 @@ export interface IOrder extends Document {
 }
 
 export interface ISupportTicket extends Document {
-  _id: string;
+  _id: Types.ObjectId;
   vendorId: string;
   subject: string;
   category: 'technical' | 'payment' | 'account' | 'other';
