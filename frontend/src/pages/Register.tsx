@@ -141,17 +141,17 @@ const Register: React.FC = () => {
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between mb-2">
-            <span className={`text-sm ${step >= 1 ? 'text-green-600 font-medium' : 'text-gray-400'}`}>Hesap Bilgileri</span>
-            <span className={`text-sm ${step >= 2 ? 'text-green-600 font-medium' : 'text-gray-400'}`}>Mağaza Bilgileri</span>
-            <span className={`text-sm ${step >= 3 ? 'text-green-600 font-medium' : 'text-gray-400'}`}>Belgeler</span>
+            <span className={`text-sm ${step >= 1 ? 'text-primary font-medium' : 'text-gray-400'}`}>Hesap Bilgileri</span>
+            <span className={`text-sm ${step >= 2 ? 'text-primary font-medium' : 'text-gray-400'}`}>Mağaza Bilgileri</span>
+            <span className={`text-sm ${step >= 3 ? 'text-primary font-medium' : 'text-gray-400'}`}>Belgeler</span>
           </div>
           <div className="h-2 bg-gray-200 rounded-full">
-            <div className="h-2 bg-green-600 rounded-full transition-all" style={{ width: `${(step / 3) * 100}%` }} />
+            <div className="h-2 bg-primary rounded-full transition-all" style={{ width: `${(step / 3) * 100}%` }} />
           </div>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+          <div className="mb-4 p-3 bg-error/5 border border-error text-error rounded-lg">
             {error}
           </div>
         )}
@@ -161,60 +161,60 @@ const Register: React.FC = () => {
           {step === 1 && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Yetkili Kişi Adı Soyadı *</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Yetkili Kişi Adı Soyadı *</label>
                 <input
                   type="text"
                   name="owner_name"
                   value={formData.owner_name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   required
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Email *</label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Telefon *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Telefon *</label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Şifre *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Şifre *</label>
                   <input
                     type="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Şifre Tekrar *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Şifre Tekrar *</label>
                   <input
                     type="password"
                     name="password_confirm"
                     value={formData.password_confirm}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
@@ -226,24 +226,24 @@ const Register: React.FC = () => {
           {step === 2 && (
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Mağaza Adı *</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Mağaza Adı *</label>
                 <input
                   type="text"
                   name="store_name"
                   value={formData.store_name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   required
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Mağaza Tipi</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Mağaza Tipi</label>
                   <select
                     name="store_type"
                     value={formData.store_type}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   >
                     <option value="">Seçiniz</option>
                     <option value="manav">Manav</option>
@@ -252,58 +252,58 @@ const Register: React.FC = () => {
                   </select>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Vergi Numarası</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Vergi Numarası</label>
                   <input
                     type="text"
                     name="tax_number"
                     value={formData.tax_number}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Vergi Dairesi</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Vergi Dairesi</label>
                 <input
                   type="text"
                   name="tax_office"
                   value={formData.tax_office}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">İl *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">İl *</label>
                   <input
                     type="text"
                     name="address.province"
                     value={formData.address.province}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">İlçe *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">İlçe *</label>
                   <input
                     type="text"
                     name="address.district"
                     value={formData.address.district}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Adres *</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Adres *</label>
                 <textarea
                   name="address.full_address"
                   value={formData.address.full_address}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   required
                 />
               </div>
@@ -313,21 +313,21 @@ const Register: React.FC = () => {
           {/* Step 3: Documents */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-4">
-                <p className="text-yellow-800 font-medium">Vergi levhası yüklenmesi ZORUNLUDUR</p>
+              <div className="bg-warning/5 border border-warning rounded-lg p-4 mb-4">
+                <p className="text-warning font-medium">Vergi levhası yüklenmesi ZORUNLUDUR</p>
                 <p className="text-yellow-700 text-sm mt-1">PDF, JPG veya PNG formatında yükleyebilirsiniz</p>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Vergi Levhası *</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Vergi Levhası *</label>
                 <input
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   required
                 />
                 {taxSheetFile && (
-                  <p className="text-sm text-green-600 mt-2">✓ {taxSheetFile.name} seçildi</p>
+                  <p className="text-sm text-primary mt-2">✓ {taxSheetFile.name} seçildi</p>
                 )}
               </div>
             </div>
@@ -338,7 +338,7 @@ const Register: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setStep(step - 1)}
-                className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                className="px-6 py-2 border border-gray-light rounded-lg text-text-primary hover:bg-gray-50"
               >
                 Geri
               </button>
@@ -347,7 +347,7 @@ const Register: React.FC = () => {
               {step < 3 ? (
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
                 >
                   Devam
                 </button>
@@ -355,7 +355,7 @@ const Register: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:bg-gray-400"
                 >
                   {loading ? 'Kayıt yapılıyor...' : 'Kayıt Ol'}
                 </button>
@@ -365,9 +365,9 @@ const Register: React.FC = () => {
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-text-secondary">
             Zaten hesabınız var mı?{' '}
-            <Link to="/login" className="text-green-600 hover:text-green-700 font-medium">
+            <Link to="/login" className="text-primary hover:text-primary-700 font-medium">
               Giriş Yap
             </Link>
           </p>
