@@ -1,8 +1,8 @@
 import { Request } from 'express';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
 export interface IVendor extends Document {
-  _id: string;
+  _id: Types.ObjectId;
   ownerName: string;
   email: string;
   phone: string;
