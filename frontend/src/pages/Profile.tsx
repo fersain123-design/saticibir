@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.tsx';
 import { vendorAPI, authAPI } from '../services/api.ts';
 
 const Profile: React.FC = () => {
