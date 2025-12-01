@@ -239,7 +239,7 @@ async def get_dashboard(vendor: dict = Depends(require_approved_vendor)):
 @api_router.get("/vendor/products")
 async def get_products(vendor: dict = Depends(require_approved_vendor)):
     products = await db.products.find({"vendor_id": vendor["id"]}).to_list(100)
-    return {"success": True, "data": {"products": products}}
+    return {"success": True, "data": {"products": clean_mongo_doc(products)}}
 
 @api_router.post("/vendor/products")
 async def create_product(product: ProductCreate, vendor: dict = Depends(require_approved_vendor)):
