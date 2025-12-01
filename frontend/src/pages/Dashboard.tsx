@@ -116,11 +116,11 @@ const Dashboard: React.FC = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-text-secondary">Toplam Sipariş</span>
-              <span className="font-semibold text-text-primary">{stats.week.orders}</span>
+              <span className="font-semibold text-text-primary">{stats.week?.orders || 0}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-text-secondary">Toplam Gelir</span>
-              <span className="font-semibold text-primary">₺{stats.week.revenue.toFixed(2)}</span>
+              <span className="font-semibold text-primary">₺{(stats.week?.revenue || 0).toFixed(2)}</span>
             </div>
           </div>
         </div>
