@@ -19,13 +19,13 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
   const getStatusBadge = () => {
     switch (vendor?.status) {
       case 'approved':
-        return <span className="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">✓ Onaylı</span>;
+        return <span className="px-2 py-1 text-xs bg-success/10 text-success rounded-full font-medium">✓ Onaylı</span>;
       case 'pending_review':
-        return <span className="px-2 py-1 text-xs bg-yellow-100 text-yellow-800 rounded-full">⏳ İnceleniyor</span>;
+        return <span className="px-2 py-1 text-xs bg-warning/10 text-warning rounded-full font-medium">⏳ İnceleniyor</span>;
       case 'rejected':
-        return <span className="px-2 py-1 text-xs bg-red-100 text-red-800 rounded-full">✕ Reddedildi</span>;
+        return <span className="px-2 py-1 text-xs bg-error/10 text-error rounded-full font-medium">✕ Reddedildi</span>;
       case 'suspended':
-        return <span className="px-2 py-1 text-xs bg-gray-100 text-gray-800 rounded-full">⊘ Askıda</span>;
+        return <span className="px-2 py-1 text-xs bg-gray/10 text-gray rounded-full font-medium">⊘ Askıda</span>;
       default:
         return null;
     }
