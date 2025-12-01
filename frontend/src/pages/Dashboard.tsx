@@ -83,27 +83,27 @@ const Dashboard: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatCard
           title="Bugünkü Siparişler"
-          value={stats.today.orders}
+          value={stats.today?.orders || 0}
           icon="📦"
           color="border-blue-500"
-          subtitle={`₺${stats.today.revenue.toFixed(2)} gelir`}
+          subtitle={`₺${(stats.today?.revenue || 0).toFixed(2)} gelir`}
         />
         <StatCard
           title="Bekleyen Siparişler"
-          value={stats.pending.orders}
+          value={stats.pending?.orders || 0}
           icon="⏳"
           color="border-yellow-500"
         />
         <StatCard
           title="Toplam Ürünler"
-          value={stats.products.total}
+          value={stats.products?.total || 0}
           icon="🏪"
           color="border-primary"
-          subtitle={`${stats.products.active} aktif`}
+          subtitle={`${stats.products?.active || 0} aktif`}
         />
         <StatCard
           title="Düşük Stok"
-          value={stats.products.low_stock}
+          value={stats.products?.low_stock || 0}
           icon="⚠️"
           color="border-red-500"
         />
