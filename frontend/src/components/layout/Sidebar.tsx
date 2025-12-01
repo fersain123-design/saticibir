@@ -37,13 +37,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between p-6 border-b">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-green-600 rounded-lg flex items-center justify-center text-white text-xl">
-                🌿
-              </div>
-              <span className="text-xl font-bold text-gray-800">Satıcı Paneli</span>
+            <div className="flex items-center space-x-3">
+              <img src="/logo.png" alt="Manavım Logo" className="h-12 w-auto" />
+              <span className="text-xl font-bold text-text-primary">Satıcı Paneli</span>
             </div>
-            <button onClick={onClose} className="lg:hidden text-gray-600 hover:text-gray-800">
+            <button onClick={onClose} className="lg:hidden text-text-secondary hover:text-text-primary">
               ✕
             </button>
           </div>
