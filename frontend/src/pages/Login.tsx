@@ -37,31 +37,31 @@ const Login: React.FC = () => {
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 rounded-lg">
+          <div className="mb-4 p-3 bg-red-50 border border-error text-error rounded-lg">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder="ornek@email.com"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Şifre</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Şifre</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               placeholder="••••••••"
               required
             />
@@ -70,16 +70,16 @@ const Login: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+            className="w-full bg-primary text-white py-2 rounded-lg hover:bg-primary-600 disabled:bg-gray disabled:cursor-not-allowed transition-colors font-medium"
           >
             {loading ? 'Giriş yapılıyor...' : 'Giriş Yap'}
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <p className="text-gray-600">
+          <p className="text-text-secondary">
             Hesabınız yok mu?{' '}
-            <Link to="/register" className="text-green-600 hover:text-green-700 font-medium">
+            <Link to="/register" className="text-primary hover:text-primary-600 font-medium">
               Kayıt Ol
             </Link>
           </p>
