@@ -7,14 +7,14 @@ const JWT_EXPIRE = process.env.JWT_EXPIRE || '7d';
 const JWT_REFRESH_EXPIRE = process.env.JWT_REFRESH_EXPIRE || '30d';
 
 export const generateAccessToken = (payload: JWTPayload): string => {
-  return jwt.sign(payload, JWT_SECRET, {
-    expiresIn: JWT_EXPIRE,
+  return jwt.sign(payload, JWT_SECRET as string, {
+    expiresIn: JWT_EXPIRE as string,
   });
 };
 
 export const generateRefreshToken = (payload: JWTPayload): string => {
-  return jwt.sign(payload, JWT_REFRESH_SECRET, {
-    expiresIn: JWT_REFRESH_EXPIRE,
+  return jwt.sign(payload, JWT_REFRESH_SECRET as string, {
+    expiresIn: JWT_REFRESH_EXPIRE as string,
   });
 };
 
