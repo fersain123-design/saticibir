@@ -189,7 +189,14 @@ async def register_vendor(vendor_data: VendorRegister):
 async def login_vendor(login_data: VendorLogin):
     vendor = await db.vendors.find_one({"email": login_data.email.lower()})
     
-    if not vendor or not verify_password(login_data.password, vendor["password_hash"]):
+    if not vendor:
+        logger.info(f"Vendor not found: {login_data.email}")
+        raise HTTPException(status_code=401, detail="Email veya şifre hatalı")
+    
+    password_valid = verify_password(login_data.password, vendor["password_hash"])
+    logger.info(f"Password verify for {login_data.email}: {password_valid}")
+    
+    if not password_valid:
         raise HTTPException(status_code=401, detail="Email veya şifre hatalı")
     
     access_token = create_access_token({"sub": vendor["id"]})
