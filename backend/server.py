@@ -259,7 +259,7 @@ async def delete_product(product_id: str, vendor: dict = Depends(require_approve
 @api_router.get("/vendor/orders")
 async def get_orders(vendor: dict = Depends(require_approved_vendor)):
     orders = await db.orders.find({"vendor_id": vendor["id"]}).to_list(100)
-    return {"success": True, "data": {"orders": orders}}
+    return {"success": True, "data": {"orders": clean_mongo_doc(orders)}}
 
 @api_router.put("/vendor/orders/{order_id}/status")
 async def update_order_status(order_id: str, status_data: OrderStatusUpdate, vendor: dict = Depends(require_approved_vendor)):
