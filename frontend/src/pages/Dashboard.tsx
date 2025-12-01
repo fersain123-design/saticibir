@@ -130,11 +130,11 @@ const Dashboard: React.FC = () => {
           <div className="space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-text-secondary">Toplam Sipariş</span>
-              <span className="font-semibold text-text-primary">{stats.month.orders}</span>
+              <span className="font-semibold text-text-primary">{stats.month?.orders || 0}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-text-secondary">Toplam Gelir</span>
-              <span className="font-semibold text-primary">₺{stats.month.revenue.toFixed(2)}</span>
+              <span className="font-semibold text-primary">₺{(stats.month?.revenue || 0).toFixed(2)}</span>
             </div>
           </div>
         </div>
