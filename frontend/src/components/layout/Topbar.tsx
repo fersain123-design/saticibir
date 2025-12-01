@@ -37,15 +37,15 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
         <div className="flex items-center space-x-4">
           <button
             onClick={onMenuClick}
-            className="lg:hidden text-gray-600 hover:text-gray-800"
+            className="lg:hidden text-text-secondary hover:text-text-primary"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
           <div>
-            <h1 className="text-lg font-semibold text-gray-800">{vendor?.store_name}</h1>
-            <p className="text-sm text-gray-500">{vendor?.email}</p>
+            <h1 className="text-lg font-semibold text-text-primary">{vendor?.store_name}</h1>
+            <p className="text-sm text-text-secondary">{vendor?.email}</p>
           </div>
         </div>
 
@@ -55,9 +55,9 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
-              className="flex items-center space-x-2 text-gray-700 hover:text-gray-900"
+              className="flex items-center space-x-2 text-text-primary hover:text-primary"
             >
-              <div className="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center text-white">
+              <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
                 {vendor?.owner_name?.charAt(0) || 'S'}
               </div>
             </button>
