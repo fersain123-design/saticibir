@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from './Sidebar';
-import Topbar from './Topbar';
+import Sidebar from './Sidebar.tsx';
+import Topbar from './Topbar.tsx';
 import { useAuth } from '../../context/AuthContext.tsx';
 
 const MainLayout: React.FC = () => {
