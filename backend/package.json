@@ -4,10 +4,10 @@
   "description": "Satıcı Paneli Backend - Node.js + Express + TypeScript",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "nodemon src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
-    "start:prod": "node dist/server.js"
+    "start": "ts-node src/server.ts",
+    "start:prod": "ts-node src/server.ts"
   },
   "dependencies": {
     "@swc/core": "^1.15.3",
