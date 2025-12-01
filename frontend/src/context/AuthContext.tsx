@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { authAPI } from '../services/api.ts';
-import { Vendor } from '../types';
+import { Vendor } from '../types/index.ts';
 
 interface AuthContextType {
   vendor: Vendor | null;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ordersAPI } from '../services/api.ts';
-import { Order } from '../types';
+import { Order } from '../types/index.ts';
 
 const Orders: React.FC = () => {
   const [orders, setOrders] = useState<Order[]>([]);

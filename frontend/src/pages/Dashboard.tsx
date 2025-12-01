@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { dashboardAPI } from '../services/api.ts';
-import { DashboardStats } from '../types';
+import { DashboardStats } from '../types/index.ts';
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const Dashboard: React.FC = () => {
