@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+          <p className="mt-4 text-text-secondary">Yükleniyor...</p>
         </div>
       </div>
     );
@@ -37,7 +37,7 @@ const Dashboard: React.FC = () => {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+      <div className="bg-error/5 border border-error rounded-lg p-4 text-error">
         {error}
       </div>
     );
@@ -55,9 +55,9 @@ const Dashboard: React.FC = () => {
     <div className={`bg-white rounded-lg shadow p-6 border-l-4 ${color}`}>
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm text-gray-600 mb-1">{title}</p>
-          <p className="text-2xl font-bold text-gray-900">{value}</p>
-          {subtitle && <p className="text-xs text-gray-500 mt-1">{subtitle}</p>}
+          <p className="text-sm text-text-secondary mb-1">{title}</p>
+          <p className="text-2xl font-bold text-text-primary">{value}</p>
+          {subtitle && <p className="text-xs text-text-secondary mt-1">{subtitle}</p>}
         </div>
         <div className="text-4xl">{icon}</div>
       </div>
@@ -67,10 +67,10 @@ const Dashboard: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
+        <h1 className="text-2xl font-bold text-text-primary">Dashboard</h1>
         <button
           onClick={fetchStats}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
+          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 flex items-center space-x-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -98,7 +98,7 @@ const Dashboard: React.FC = () => {
           title="Toplam Ürünler"
           value={stats.products.total}
           icon="🏪"
-          color="border-green-500"
+          color="border-primary"
           subtitle={`${stats.products.active} aktif`}
         />
         <StatCard
@@ -112,29 +112,29 @@ const Dashboard: React.FC = () => {
       {/* Period Stats */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Haftalık Özet</h3>
+          <h3 className="text-lg font-semibold text-text-primary mb-4">Haftalık Özet</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Toplam Sipariş</span>
-              <span className="font-semibold text-gray-900">{stats.week.orders}</span>
+              <span className="text-text-secondary">Toplam Sipariş</span>
+              <span className="font-semibold text-text-primary">{stats.week.orders}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Toplam Gelir</span>
-              <span className="font-semibold text-green-600">₺{stats.week.revenue.toFixed(2)}</span>
+              <span className="text-text-secondary">Toplam Gelir</span>
+              <span className="font-semibold text-primary">₺{stats.week.revenue.toFixed(2)}</span>
             </div>
           </div>
         </div>
 
         <div className="bg-white rounded-lg shadow p-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Aylık Özet</h3>
+          <h3 className="text-lg font-semibold text-text-primary mb-4">Aylık Özet</h3>
           <div className="space-y-3">
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Toplam Sipariş</span>
-              <span className="font-semibold text-gray-900">{stats.month.orders}</span>
+              <span className="text-text-secondary">Toplam Sipariş</span>
+              <span className="font-semibold text-text-primary">{stats.month.orders}</span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-600">Toplam Gelir</span>
-              <span className="font-semibold text-green-600">₺{stats.month.revenue.toFixed(2)}</span>
+              <span className="text-text-secondary">Toplam Gelir</span>
+              <span className="font-semibold text-primary">₺{stats.month.revenue.toFixed(2)}</span>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ const Dashboard: React.FC = () => {
       {stats.chart_data && stats.chart_data.length > 0 && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Sipariş Trendi (Son 7 Gün)</h3>
+            <h3 className="text-lg font-semibold text-text-primary mb-4">Sipariş Trendi (Son 7 Gün)</h3>
             <ResponsiveContainer width="100%" height={300}>
               <LineChart data={stats.chart_data}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -158,7 +158,7 @@ const Dashboard: React.FC = () => {
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Gelir Trendi (Son 7 Gün)</h3>
+            <h3 className="text-lg font-semibold text-text-primary mb-4">Gelir Trendi (Son 7 Gün)</h3>
             <ResponsiveContainer width="100%" height={300}>
               <BarChart data={stats.chart_data}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -177,33 +177,33 @@ const Dashboard: React.FC = () => {
       {stats.recent_orders && stats.recent_orders.length > 0 && (
         <div className="bg-white rounded-lg shadow">
           <div className="p-6 border-b">
-            <h3 className="text-lg font-semibold text-gray-900">Son Siparişler</h3>
+            <h3 className="text-lg font-semibold text-text-primary">Son Siparişler</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-background">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Sipariş No</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Müşteri</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Toplam</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Durum</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tarih</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Sipariş No</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Müşteri</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Toplam</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Durum</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Tarih</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {stats.recent_orders.slice(0, 5).map((order) => (
-                  <tr key={order.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-900">{order.order_number || order.id.slice(0, 8)}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{order.customer_info.name}</td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">₺{order.total.toFixed(2)}</td>
+                  <tr key={order.id} className="hover:bg-background">
+                    <td className="px-6 py-4 text-sm text-text-primary">{order.order_number || order.id.slice(0, 8)}</td>
+                    <td className="px-6 py-4 text-sm text-text-primary">{order.customer_info.name}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-text-primary">₺{order.total.toFixed(2)}</td>
                     <td className="px-6 py-4">
                       <span
                         className={`px-2 py-1 text-xs rounded-full ${
                           order.status === 'delivered'
-                            ? 'bg-green-100 text-green-800'
+                            ? 'bg-success/10 text-success'
                             : order.status === 'cancelled'
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-error/10 text-error'
+                            : 'bg-warning/10 text-warning'
                         }`}
                       >
                         {order.status === 'pending' && 'Beklemede'}
@@ -213,7 +213,7 @@ const Dashboard: React.FC = () => {
                         {order.status === 'cancelled' && 'İptal'}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-sm text-text-secondary">
                       {new Date(order.created_at).toLocaleDateString('tr-TR')}
                     </td>
                   </tr>
@@ -226,7 +226,7 @@ const Dashboard: React.FC = () => {
 
       {stats.recent_orders?.length === 0 && (
         <div className="bg-white rounded-lg shadow p-12 text-center">
-          <p className="text-gray-500">Henüz sipariş bulunmuyor</p>
+          <p className="text-text-secondary">Henüz sipariş bulunmuyor</p>
         </div>
       )}
     </div>

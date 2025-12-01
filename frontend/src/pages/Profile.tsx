@@ -76,37 +76,37 @@ const Profile: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-gray-900">Profil Ayarları</h1>
+      <h1 className="text-2xl font-bold text-text-primary">Profil Ayarları</h1>
 
       {success && (
-        <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-green-700">
+        <div className="bg-primary-50 border border-green-200 rounded-lg p-4 text-primary-700">
           {success}
         </div>
       )}
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">
+        <div className="bg-error/5 border border-error rounded-lg p-4 text-error">
           {error}
         </div>
       )}
 
       {/* Account Status */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Hesap Durumu</h2>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Hesap Durumu</h2>
         <div className="space-y-3">
           <div className="flex justify-between">
-            <span className="text-gray-600">Email</span>
+            <span className="text-text-secondary">Email</span>
             <span className="font-medium">{vendor?.email}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Hesap Durumu</span>
+            <span className="text-text-secondary">Hesap Durumu</span>
             <span
               className={`px-3 py-1 text-sm rounded-full ${
                 vendor?.status === 'approved'
-                  ? 'bg-green-100 text-green-800'
+                  ? 'bg-success/10 text-success'
                   : vendor?.status === 'pending_review'
-                  ? 'bg-yellow-100 text-yellow-800'
-                  : 'bg-red-100 text-red-800'
+                  ? 'bg-warning/10 text-warning'
+                  : 'bg-error/10 text-error'
               }`}
             >
               {vendor?.status === 'approved' && '✓ Onaylı'}
@@ -116,7 +116,7 @@ const Profile: React.FC = () => {
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-gray-600">Kayıt Tarihi</span>
+            <span className="text-text-secondary">Kayıt Tarihi</span>
             <span className="font-medium">
               {vendor?.created_at && new Date(vendor.created_at).toLocaleDateString('tr-TR')}
             </span>
@@ -126,49 +126,49 @@ const Profile: React.FC = () => {
 
       {/* Profile Form */}
       <form onSubmit={handleProfileSubmit} className="bg-white rounded-lg shadow p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Profil Bilgileri</h2>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Profil Bilgileri</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Yetkili Kişi Adı</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Yetkili Kişi Adı</label>
             <input
               type="text"
               name="owner_name"
               value={formData.owner_name}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Telefon</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Telefon</label>
             <input
               type="tel"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Mağaza Adı</label>
+          <label className="block text-sm font-medium text-text-primary mb-2">Mağaza Adı</label>
           <input
             type="text"
             name="store_name"
             value={formData.store_name}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Mağaza Tipi</label>
+          <label className="block text-sm font-medium text-text-primary mb-2">Mağaza Tipi</label>
           <select
             name="store_type"
             value={formData.store_type}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           >
             <option value="">Seçiniz</option>
             <option value="manav">Manav</option>
@@ -178,13 +178,13 @@ const Profile: React.FC = () => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Mağaza Açıklaması</label>
+          <label className="block text-sm font-medium text-text-primary mb-2">Mağaza Açıklaması</label>
           <textarea
             name="store_description"
             value={formData.store_description}
             onChange={handleChange}
             rows={3}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           />
         </div>
 
@@ -192,7 +192,7 @@ const Profile: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:bg-gray"
           >
             {loading ? 'Kaydediliyor...' : 'Kaydet'}
           </button>
@@ -201,18 +201,18 @@ const Profile: React.FC = () => {
 
       {/* Address Info */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Adres Bilgileri</h2>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Adres Bilgileri</h2>
         <div className="space-y-2 text-sm">
           <p>
-            <span className="text-gray-600">İl:</span>{' '}
+            <span className="text-text-secondary">İl:</span>{' '}
             <span className="font-medium">{vendor?.address?.province}</span>
           </p>
           <p>
-            <span className="text-gray-600">İlçe:</span>{' '}
+            <span className="text-text-secondary">İlçe:</span>{' '}
             <span className="font-medium">{vendor?.address?.district}</span>
           </p>
           <p>
-            <span className="text-gray-600">Adres:</span>{' '}
+            <span className="text-text-secondary">Adres:</span>{' '}
             <span className="font-medium">{vendor?.address?.full_address}</span>
           </p>
         </div>
@@ -220,64 +220,64 @@ const Profile: React.FC = () => {
 
       {/* Documents */}
       <div className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Belgeler</h2>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Belgeler</h2>
         <div className="space-y-3">
           {vendor?.documents?.tax_sheet_url && (
-            <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+            <div className="flex items-center justify-between p-3 bg-background rounded-lg">
               <div>
-                <p className="font-medium text-gray-900">Vergi Levhası</p>
-                <p className="text-sm text-gray-500">Yüklenmiş</p>
+                <p className="font-medium text-text-primary">Vergi Levhası</p>
+                <p className="text-sm text-text-secondary">Yüklenmiş</p>
               </div>
               <a
                 href={vendor.documents.tax_sheet_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-green-600 hover:text-green-700"
+                className="text-primary hover:text-primary-700"
               >
                 Görüntüle
               </a>
             </div>
           )}
           {!vendor?.documents?.tax_sheet_url && (
-            <p className="text-gray-500 text-sm">Henüz belge yüklenmemiş</p>
+            <p className="text-text-secondary text-sm">Henüz belge yüklenmemiş</p>
           )}
         </div>
       </div>
 
       {/* Password Change */}
       <form onSubmit={handlePasswordSubmit} className="bg-white rounded-lg shadow p-6 space-y-4">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Şifre Değiştir</h2>
+        <h2 className="text-lg font-semibold text-text-primary mb-4">Şifre Değiştir</h2>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Mevcut Şifre</label>
+          <label className="block text-sm font-medium text-text-primary mb-2">Mevcut Şifre</label>
           <input
             type="password"
             name="current_password"
             value={passwordData.current_password}
             onChange={handlePasswordChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Yeni Şifre</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Yeni Şifre</label>
             <input
               type="password"
               name="new_password"
               value={passwordData.new_password}
               onChange={handlePasswordChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Yeni Şifre (Tekrar)</label>
+            <label className="block text-sm font-medium text-text-primary mb-2">Yeni Şifre (Tekrar)</label>
             <input
               type="password"
               name="confirm_password"
               value={passwordData.confirm_password}
               onChange={handlePasswordChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
@@ -286,7 +286,7 @@ const Profile: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:bg-gray-400"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:bg-gray"
           >
             Şifre Değiştir
           </button>

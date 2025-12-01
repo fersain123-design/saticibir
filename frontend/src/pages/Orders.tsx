@@ -44,17 +44,17 @@ const Orders: React.FC = () => {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800';
+        return 'bg-warning/10 text-warning';
       case 'preparing':
-        return 'bg-blue-100 text-blue-800';
+        return 'bg-info/10 text-blue-800';
       case 'on_the_way':
         return 'bg-purple-100 text-purple-800';
       case 'delivered':
-        return 'bg-green-100 text-green-800';
+        return 'bg-success/10 text-success';
       case 'cancelled':
-        return 'bg-red-100 text-red-800';
+        return 'bg-error/10 text-error';
       default:
-        return 'bg-gray-100 text-gray-800';
+        return 'bg-gray-100 text-text-primary';
     }
   };
 
@@ -97,7 +97,7 @@ const Orders: React.FC = () => {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+          <p className="mt-4 text-text-secondary">Yükleniyor...</p>
         </div>
       </div>
     );
@@ -106,10 +106,10 @@ const Orders: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Sipariş Yönetimi</h1>
+        <h1 className="text-2xl font-bold text-text-primary">Sipariş Yönetimi</h1>
         <button
           onClick={fetchOrders}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
+          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 flex items-center space-x-2"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -119,17 +119,17 @@ const Orders: React.FC = () => {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">{error}</div>
+        <div className="bg-error/5 border border-error rounded-lg p-4 text-error">{error}</div>
       )}
 
       {/* Filter */}
       <div className="bg-white rounded-lg shadow p-4">
         <div className="flex items-center space-x-4">
-          <label className="text-sm font-medium text-gray-700">Durum Filtresi:</label>
+          <label className="text-sm font-medium text-text-primary">Durum Filtresi:</label>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           >
             <option value="">Tümü</option>
             <option value="pending">Beklemede</option>
@@ -140,7 +140,7 @@ const Orders: React.FC = () => {
           </select>
           <button
             onClick={fetchOrders}
-            className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+            className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
           >
             Filtrele
           </button>
@@ -152,34 +152,34 @@ const Orders: React.FC = () => {
         {orders.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-background">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Sipariş No</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Müşteri</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Toplam</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ödeme</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Durum</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Tarih</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">İşlemler</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Sipariş No</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Müşteri</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Toplam</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Ödeme</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Durum</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Tarih</th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase">İşlemler</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {orders.map((order) => (
-                  <tr key={order.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                  <tr key={order.id} className="hover:bg-background">
+                    <td className="px-6 py-4 text-sm font-medium text-text-primary">
                       {order.order_number || order.id.slice(0, 8)}
                     </td>
                     <td className="px-6 py-4">
-                      <div className="text-sm text-gray-900">{order.customer_info.name}</div>
-                      <div className="text-xs text-gray-500">{order.customer_info.phone}</div>
+                      <div className="text-sm text-text-primary">{order.customer_info.name}</div>
+                      <div className="text-xs text-text-secondary">{order.customer_info.phone}</div>
                     </td>
-                    <td className="px-6 py-4 text-sm font-medium text-gray-900">₺{order.total.toFixed(2)}</td>
+                    <td className="px-6 py-4 text-sm font-medium text-text-primary">₺{order.total.toFixed(2)}</td>
                     <td className="px-6 py-4">
                       <span
                         className={`px-2 py-1 text-xs rounded-full ${
                           order.payment_status === 'paid'
-                            ? 'bg-green-100 text-green-800'
-                            : 'bg-yellow-100 text-yellow-800'
+                            ? 'bg-success/10 text-success'
+                            : 'bg-warning/10 text-warning'
                         }`}
                       >
                         {order.payment_status === 'paid' ? 'Ödendi' : 'Bekliyor'}
@@ -190,13 +190,13 @@ const Orders: React.FC = () => {
                         {getStatusText(order.status)}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-500">
+                    <td className="px-6 py-4 text-sm text-text-secondary">
                       {new Date(order.created_at).toLocaleDateString('tr-TR')}
                     </td>
                     <td className="px-6 py-4 text-right">
                       <button
                         onClick={() => setSelectedOrder(order)}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="text-info hover:text-blue-800"
                       >
                         📋 Detay
                       </button>
@@ -207,7 +207,7 @@ const Orders: React.FC = () => {
             </table>
           </div>
         ) : (
-          <div className="p-12 text-center text-gray-500">
+          <div className="p-12 text-center text-text-secondary">
             <p className="text-lg">Sipariş bulunmuyor</p>
           </div>
         )}
@@ -219,7 +219,7 @@ const Orders: React.FC = () => {
           <div className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6 border-b flex items-center justify-between">
               <h2 className="text-xl font-bold">Sipariş Detayı</h2>
-              <button onClick={() => setSelectedOrder(null)} className="text-gray-500 hover:text-gray-700">
+              <button onClick={() => setSelectedOrder(null)} className="text-text-secondary hover:text-text-primary">
                 ✕
               </button>
             </div>
@@ -228,11 +228,11 @@ const Orders: React.FC = () => {
               {/* Order Info */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-gray-500">Sipariş No</p>
+                  <p className="text-sm text-text-secondary">Sipariş No</p>
                   <p className="font-medium">{selectedOrder.order_number || selectedOrder.id.slice(0, 8)}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500">Tarih</p>
+                  <p className="text-sm text-text-secondary">Tarih</p>
                   <p className="font-medium">
                     {new Date(selectedOrder.created_at).toLocaleString('tr-TR')}
                   </p>
@@ -241,18 +241,18 @@ const Orders: React.FC = () => {
 
               {/* Customer Info */}
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Müşteri Bilgileri</h3>
-                <div className="bg-gray-50 rounded-lg p-4 space-y-2">
+                <h3 className="font-semibold text-text-primary mb-3">Müşteri Bilgileri</h3>
+                <div className="bg-background rounded-lg p-4 space-y-2">
                   <p>
-                    <span className="text-gray-600">Ad:</span>{' '}
+                    <span className="text-text-secondary">Ad:</span>{' '}
                     <span className="font-medium">{selectedOrder.customer_info.name}</span>
                   </p>
                   <p>
-                    <span className="text-gray-600">Telefon:</span>{' '}
+                    <span className="text-text-secondary">Telefon:</span>{' '}
                     <span className="font-medium">{selectedOrder.customer_info.phone}</span>
                   </p>
                   <p>
-                    <span className="text-gray-600">Adres:</span>{' '}
+                    <span className="text-text-secondary">Adres:</span>{' '}
                     <span className="font-medium">{selectedOrder.customer_info.address}</span>
                   </p>
                 </div>
@@ -260,15 +260,15 @@ const Orders: React.FC = () => {
 
               {/* Items */}
               <div>
-                <h3 className="font-semibold text-gray-900 mb-3">Ürünler</h3>
+                <h3 className="font-semibold text-text-primary mb-3">Ürünler</h3>
                 <div className="border rounded-lg overflow-hidden">
                   <table className="w-full">
-                    <thead className="bg-gray-50">
+                    <thead className="bg-background">
                       <tr>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Ürün</th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Miktar</th>
-                        <th className="px-4 py-2 text-left text-sm font-medium text-gray-500">Birim Fiyat</th>
-                        <th className="px-4 py-2 text-right text-sm font-medium text-gray-500">Toplam</th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-text-secondary">Ürün</th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-text-secondary">Miktar</th>
+                        <th className="px-4 py-2 text-left text-sm font-medium text-text-secondary">Birim Fiyat</th>
+                        <th className="px-4 py-2 text-right text-sm font-medium text-text-secondary">Toplam</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -293,16 +293,16 @@ const Orders: React.FC = () => {
               <div className="border-t pt-4">
                 <div className="space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Ara Toplam</span>
+                    <span className="text-text-secondary">Ara Toplam</span>
                     <span className="font-medium">₺{selectedOrder.subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Teslimat Ücreti</span>
+                    <span className="text-text-secondary">Teslimat Ücreti</span>
                     <span className="font-medium">₺{selectedOrder.delivery_fee.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between text-lg font-bold border-t pt-2">
                     <span>Genel Toplam</span>
-                    <span className="text-green-600">₺{selectedOrder.total.toFixed(2)}</span>
+                    <span className="text-primary">₺{selectedOrder.total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>
@@ -310,13 +310,13 @@ const Orders: React.FC = () => {
               {/* Status Update */}
               {getNextStatuses(selectedOrder.status).length > 0 && (
                 <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">Durum Güncelle</h3>
+                  <h3 className="font-semibold text-text-primary mb-3">Durum Güncelle</h3>
                   <div className="flex flex-wrap gap-2">
                     {getNextStatuses(selectedOrder.status).map((status) => (
                       <button
                         key={status}
                         onClick={() => handleStatusUpdate(selectedOrder.id, status)}
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                        className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
                       >
                         {getStatusText(status)} olarak işaretle
                       </button>
@@ -326,8 +326,8 @@ const Orders: React.FC = () => {
               )}
 
               {(selectedOrder.status === 'delivered' || selectedOrder.status === 'cancelled') && (
-                <div className="bg-gray-50 rounded-lg p-4 text-center">
-                  <p className="text-gray-600">Bu sipariş tamamlanmıştır.</p>
+                <div className="bg-background rounded-lg p-4 text-center">
+                  <p className="text-text-secondary">Bu sipariş tamamlanmıştır.</p>
                 </div>
               )}
             </div>

@@ -117,7 +117,7 @@ const Products: React.FC = () => {
       <div className="flex items-center justify-center h-64">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Yükleniyor...</p>
+          <p className="mt-4 text-text-secondary">Yükleniyor...</p>
         </div>
       </div>
     );
@@ -126,13 +126,13 @@ const Products: React.FC = () => {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">Ürün Yönetimi</h1>
+        <h1 className="text-2xl font-bold text-text-primary">Ürün Yönetimi</h1>
         <button
           onClick={() => {
             resetForm();
             setShowModal(true);
           }}
-          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center space-x-2"
+          className="px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 flex items-center space-x-2"
         >
           <span>+</span>
           <span>Yeni Ürün</span>
@@ -140,7 +140,7 @@ const Products: React.FC = () => {
       </div>
 
       {error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 text-red-700">{error}</div>
+        <div className="bg-error/5 border border-error rounded-lg p-4 text-error">{error}</div>
       )}
 
       {/* Filters */}
@@ -152,12 +152,12 @@ const Products: React.FC = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && fetchProducts()}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           />
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+            className="px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
           >
             <option value="">Tüm Kategoriler</option>
             <option value="Meyve">Meyve</option>
@@ -168,7 +168,7 @@ const Products: React.FC = () => {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+              className="flex-1 px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
             >
               <option value="">Tüm Durumlar</option>
               <option value="active">Aktif</option>
@@ -176,7 +176,7 @@ const Products: React.FC = () => {
             </select>
             <button
               onClick={fetchProducts}
-              className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+              className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
             >
               Ara
             </button>
@@ -189,40 +189,40 @@ const Products: React.FC = () => {
         {products.length > 0 ? (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50">
+              <thead className="bg-background">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ürün</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Kategori</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Fiyat</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Birim</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Stok</th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Durum</th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">İşlemler</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Ürün</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Kategori</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Fiyat</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Birim</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Stok</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase">Durum</th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase">İşlemler</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-200">
                 {products.map((product) => (
-                  <tr key={product.id} className="hover:bg-gray-50">
+                  <tr key={product.id} className="hover:bg-background">
                     <td className="px-6 py-4">
                       <div>
-                        <div className="font-medium text-gray-900">{product.name}</div>
+                        <div className="font-medium text-text-primary">{product.name}</div>
                         {product.description && (
-                          <div className="text-sm text-gray-500">{product.description.substring(0, 50)}</div>
+                          <div className="text-sm text-text-secondary">{product.description.substring(0, 50)}</div>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{product.category}</td>
+                    <td className="px-6 py-4 text-sm text-text-primary">{product.category}</td>
                     <td className="px-6 py-4">
-                      <div className="text-sm font-medium text-gray-900">₺{product.price.toFixed(2)}</div>
+                      <div className="text-sm font-medium text-text-primary">₺{product.price.toFixed(2)}</div>
                       {product.discount_price && (
-                        <div className="text-xs text-green-600">₺{product.discount_price.toFixed(2)} indirimli</div>
+                        <div className="text-xs text-primary">₺{product.discount_price.toFixed(2)} indirimli</div>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{product.unit}</td>
+                    <td className="px-6 py-4 text-sm text-text-primary">{product.unit}</td>
                     <td className="px-6 py-4">
                       <div
                         className={`text-sm font-medium ${
-                          product.stock <= product.min_stock_threshold ? 'text-red-600' : 'text-gray-900'
+                          product.stock <= product.min_stock_threshold ? 'text-error' : 'text-text-primary'
                         }`}
                       >
                         {product.stock}
@@ -232,7 +232,7 @@ const Products: React.FC = () => {
                     <td className="px-6 py-4">
                       <span
                         className={`px-2 py-1 text-xs rounded-full ${
-                          product.status === 'active' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                          product.status === 'active' ? 'bg-success/10 text-success' : 'bg-gray-100 text-text-primary'
                         }`}
                       >
                         {product.status === 'active' ? 'Aktif' : 'Pasif'}
@@ -241,13 +241,13 @@ const Products: React.FC = () => {
                     <td className="px-6 py-4 text-right space-x-2">
                       <button
                         onClick={() => handleEdit(product)}
-                        className="text-blue-600 hover:text-blue-800"
+                        className="text-info hover:text-blue-800"
                       >
                         ✏️
                       </button>
                       <button
                         onClick={() => handleDelete(product.id)}
-                        className="text-red-600 hover:text-red-800"
+                        className="text-error hover:text-error"
                       >
                         🗑️
                       </button>
@@ -258,14 +258,14 @@ const Products: React.FC = () => {
             </table>
           </div>
         ) : (
-          <div className="p-12 text-center text-gray-500">
+          <div className="p-12 text-center text-text-secondary">
             <p className="text-lg">Henüz ürün bulunmuyor</p>
             <button
               onClick={() => {
                 resetForm();
                 setShowModal(true);
               }}
-              className="mt-4 text-green-600 hover:text-green-700"
+              className="mt-4 text-primary hover:text-primary-700"
             >
               İlk ürününüzü ekleyin
             </button>
@@ -281,7 +281,7 @@ const Products: React.FC = () => {
               <h2 className="text-xl font-bold">
                 {editingProduct ? 'Ürün Düzenle' : 'Yeni Ürün Ekle'}
               </h2>
-              <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-700">
+              <button onClick={() => setShowModal(false)} className="text-text-secondary hover:text-text-primary">
                 ✕
               </button>
             </div>
@@ -289,24 +289,24 @@ const Products: React.FC = () => {
             <form onSubmit={handleSubmit} className="p-6 space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Ürün Adı *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Ürün Adı *</label>
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Kategori *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Kategori *</label>
                   <input
                     type="text"
                     name="category"
                     value={formData.category}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
@@ -314,36 +314,36 @@ const Products: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Fiyat (₺) *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Fiyat (₺) *</label>
                   <input
                     type="number"
                     step="0.01"
                     name="price"
                     value={formData.price}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Birim *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Birim *</label>
                   <input
                     type="text"
                     name="unit"
                     value={formData.unit}
                     onChange={handleChange}
                     placeholder="kg, adet, paket"
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Durum</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Durum</label>
                   <select
                     name="status"
                     value={formData.status}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   >
                     <option value="active">Aktif</option>
                     <option value="inactive">Pasif</option>
@@ -353,36 +353,36 @@ const Products: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Stok *</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Stok *</label>
                   <input
                     type="number"
                     name="stock"
                     value={formData.stock}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Min. Stok Eşiği</label>
+                  <label className="block text-sm font-medium text-text-primary mb-2">Min. Stok Eşiği</label>
                   <input
                     type="number"
                     name="min_stock_threshold"
                     value={formData.min_stock_threshold}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Açıklama</label>
+                <label className="block text-sm font-medium text-text-primary mb-2">Açıklama</label>
                 <textarea
                   name="description"
                   value={formData.description}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500"
+                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
                 />
               </div>
 
@@ -390,13 +390,13 @@ const Products: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setShowModal(false)}
-                  className="px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50"
+                  className="px-6 py-2 border border-gray-light rounded-lg text-text-primary hover:bg-background"
                 >
                   İptal
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
                 >
                   {editingProduct ? 'Güncelle' : 'Ekle'}
                 </button>
