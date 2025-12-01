@@ -11,33 +11,33 @@ const MainLayout: React.FC = () => {
   // Show status message for non-approved vendors
   if (vendor && vendor.status !== 'approved') {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <div className="min-h-screen bg-background flex items-center justify-center p-4">
         <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
           <div className="mb-4">
             {vendor.status === 'pending_review' && (
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-warning/10 rounded-full mb-4">
                 <span className="text-3xl">⏳</span>
               </div>
             )}
             {vendor.status === 'rejected' && (
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-red-100 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-error/10 rounded-full mb-4">
                 <span className="text-3xl">✕</span>
               </div>
             )}
             {vendor.status === 'suspended' && (
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-background rounded-full mb-4">
                 <span className="text-3xl">⊘</span>
               </div>
             )}
           </div>
 
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl font-bold text-text-primary mb-2">
             {vendor.status === 'pending_review' && 'Hesabınız İnceleniyor'}
             {vendor.status === 'rejected' && 'Hesabınız Reddedildi'}
             {vendor.status === 'suspended' && 'Hesabınız Askıya Alındı'}
           </h2>
 
-          <p className="text-gray-600 mb-4">
+          <p className="text-text-secondary mb-4">
             {vendor.status === 'pending_review' &&
               'Hesabınız şu anda inceleme aşamasında. Onaylandığında size email ile bildirilecektir.'}
             {vendor.status === 'rejected' && (
@@ -55,8 +55,8 @@ const MainLayout: React.FC = () => {
           </p>
 
           <div className="space-y-2">
-            <p className="text-sm text-gray-500">Mağaza: {vendor.store_name}</p>
-            <p className="text-sm text-gray-500">Email: {vendor.email}</p>
+            <p className="text-sm text-text-secondary">Mağaza: {vendor.store_name}</p>
+            <p className="text-sm text-text-secondary">Email: {vendor.email}</p>
           </div>
         </div>
       </div>
@@ -64,7 +64,7 @@ const MainLayout: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
       
       <div className="lg:pl-64">
