@@ -20,7 +20,8 @@ const Login: React.FC = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (err: any) {
-      setError(err.response?.data?.detail || 'Giriş başarısız oldu');
+      console.error('Login error:', err);
+      setError(err.message || err.response?.data?.detail || err.response?.data?.message || 'Giriş başarısız oldu');
     } finally {
       setLoading(false);
     }
