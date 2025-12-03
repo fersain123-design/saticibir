@@ -241,11 +241,24 @@ const Products: React.FC = () => {
                 {products.map((product) => (
                   <tr key={product.id} className="hover:bg-background">
                     <td className="px-6 py-4">
-                      <div>
-                        <div className="font-medium text-text-primary">{product.name}</div>
-                        {product.description && (
-                          <div className="text-sm text-text-secondary">{product.description.substring(0, 50)}</div>
+                      <div className="flex items-center space-x-3">
+                        {product.images && product.images.length > 0 ? (
+                          <img
+                            src={product.images[0]}
+                            alt={product.name}
+                            className="w-12 h-12 rounded-lg object-cover border-2 border-primary/20"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-lg bg-background flex items-center justify-center text-text-secondary border-2 border-gray-light">
+                            📷
+                          </div>
                         )}
+                        <div>
+                          <div className="font-medium text-text-primary">{product.name}</div>
+                          {product.description && (
+                            <div className="text-sm text-text-secondary">{product.description.substring(0, 50)}</div>
+                          )}
+                        </div>
                       </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-text-primary">{product.category}</td>
