@@ -21,7 +21,11 @@ const Products: React.FC = () => {
     min_stock_threshold: '10',
     status: 'active',
     description: '',
+    images: [] as string[],
   });
+
+  const [imageFiles, setImageFiles] = useState<File[]>([]);
+  const [imagePreviews, setImagePreviews] = useState<string[]>([]);
 
   useEffect(() => {
     fetchProducts();
