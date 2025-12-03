@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext.tsx';
+import { AuthProvider } from './context/AuthContext.tsx';
+import ProtectedRoute from './components/ProtectedRoute.tsx';
 import MainLayout from './components/layout/MainLayout.tsx';
 import Login from './pages/Login.tsx';
 import Register from './pages/Register.tsx';
@@ -10,7 +11,8 @@ import Orders from './pages/Orders.tsx';
 import Profile from './pages/Profile.tsx';
 import './App.css';
 
-const PrivateRoute = ({ children }) => {
+const PublicRoute = ({ children }) => {
+  const { useAuth } = require('./context/AuthContext.tsx');
   const { isAuthenticated, isLoading } = useAuth();
 
   if (isLoading) {
@@ -21,7 +23,7 @@ const PrivateRoute = ({ children }) => {
     );
   }
 
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  return !isAuthenticated ? children : <Navigate to="/dashboard" replace />;
 };
 
 const PublicRoute = ({ children }) => {
