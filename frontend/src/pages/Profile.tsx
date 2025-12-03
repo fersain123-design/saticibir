@@ -271,6 +271,99 @@ const Profile: React.FC = () => {
         </div>
       </div>
 
+      {/* Payment Information - IBAN */}
+      <form onSubmit={handlePaymentSubmit} className="bg-white rounded-lg shadow p-6 space-y-4">
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-lg font-semibold text-text-primary">Ödeme Bilgileri</h2>
+          <span className="text-xs text-text-secondary bg-accent/10 px-3 py-1 rounded-full">
+            💰 Para Çekme İçin
+          </span>
+        </div>
+        
+        <div className="bg-accent/5 border-l-4 border-accent p-4 rounded-lg mb-4">
+          <p className="text-sm text-text-primary">
+            <strong>💡 Bilgi:</strong> Kazancınızı çekmek için banka hesap bilgilerinizi ekleyin.
+          </p>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-text-primary mb-2">
+            Hesap Sahibinin Adı Soyadı *
+          </label>
+          <input
+            type="text"
+            name="account_holder_name"
+            value={paymentData.account_holder_name}
+            onChange={handlePaymentChange}
+            placeholder="Ahmet Yılmaz"
+            className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-text-primary mb-2">
+            Banka Adı *
+          </label>
+          <input
+            type="text"
+            name="bank_name"
+            value={paymentData.bank_name}
+            onChange={handlePaymentChange}
+            placeholder="Ziraat Bankası, İş Bankası, Garanti BBVA vb."
+            className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-text-primary mb-2">
+            IBAN *
+          </label>
+          <input
+            type="text"
+            name="iban"
+            value={paymentData.iban}
+            onChange={handlePaymentChange}
+            placeholder="TR00 0000 0000 0000 0000 0000 00"
+            maxLength={32}
+            className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-mono"
+          />
+          <p className="text-xs text-text-secondary mt-1">
+            IBAN numaranızı boşluksuz veya boşluklu girebilirsiniz
+          </p>
+        </div>
+
+        {/* Current IBAN Display */}
+        {vendor?.payment_info?.iban && (
+          <div className="bg-success/5 border border-success/20 rounded-xl p-4">
+            <p className="text-sm font-semibold text-success mb-2">✓ Kayıtlı IBAN Bilgileri</p>
+            <div className="space-y-1 text-sm">
+              <p>
+                <span className="text-text-secondary">Hesap Sahibi:</span>{' '}
+                <span className="font-medium">{vendor.payment_info.account_holder_name}</span>
+              </p>
+              <p>
+                <span className="text-text-secondary">Banka:</span>{' '}
+                <span className="font-medium">{vendor.payment_info.bank_name}</span>
+              </p>
+              <p>
+                <span className="text-text-secondary">IBAN:</span>{' '}
+                <span className="font-mono font-medium">{vendor.payment_info.iban}</span>
+              </p>
+            </div>
+          </div>
+        )}
+
+        <div className="flex justify-end">
+          <button
+            type="submit"
+            disabled={loading}
+            className="px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 disabled:bg-gray transition-all font-semibold shadow-md hover:shadow-lg"
+          >
+            {loading ? 'Kaydediliyor...' : 'IBAN Bilgilerini Kaydet'}
+          </button>
+        </div>
+      </form>
+
       {/* Password Change */}
       <form onSubmit={handlePasswordSubmit} className="bg-white rounded-lg shadow p-6 space-y-4">
         <h2 className="text-lg font-semibold text-text-primary mb-4">Şifre Değiştir</h2>
