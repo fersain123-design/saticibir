@@ -36,6 +36,27 @@ const Profile: React.FC = () => {
     setPasswordData({ ...passwordData, [e.target.name]: e.target.value });
   };
 
+  const handlePaymentChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPaymentData({ ...paymentData, [e.target.name]: e.target.value });
+  };
+
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+    setSuccess('');
+
+    try {
+      await vendorAPI.updateProfile({ payment_info: paymentData });
+      await refreshVendor();
+      setSuccess('Ödeme bilgileri başarıyla güncellendi');
+    } catch (err: any) {
+      setError(err.response?.data?.detail || 'Ödeme bilgileri güncellenemedi');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const handleProfileSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
