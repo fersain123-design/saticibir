@@ -25,6 +25,11 @@ export interface Vendor {
     trade_registry_url?: string;
     signature_circular_url?: string;
   };
+  payment_info?: {
+    account_holder_name?: string;
+    bank_name?: string;
+    iban?: string;
+  };
   created_at: string;
 }
 
