@@ -1,16 +1,16 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 
-const API_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:8001';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
 
-const api = axios.create({
+const apiClient: AxiosInstance = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-// Add token to requests
-api.interceptors.request.use(
+// Request interceptor - add auth token to all requests
+apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('access_token');
     if (token) {
@@ -18,18 +18,24 @@ api.interceptors.request.use(
     }
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
-// Handle 401 errors
-api.interceptors.response.use(
+// Response interceptor - handle 401/403 errors
+apiClient.interceptors.response.use(
   (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
+  (error) => {
+    if (error.response?.status === 401 || error.response?.status === 403) {
+      // Clear auth data
       localStorage.removeItem('access_token');
-      localStorage.removeItem('refresh_token');
-      localStorage.removeItem('vendor');
-      window.location.href = '/login';
+      localStorage.removeItem('user');
+      
+      // Redirect to login
+      if (window.location.pathname !== '/login') {
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }
@@ -37,51 +43,62 @@ api.interceptors.response.use(
 
 // Auth API
 export const authAPI = {
-  register: (data: any) => api.post('/api/vendor/register', data),
-  login: (email: string, password: string) => api.post('/api/vendor/login', { email, password }),
-  logout: () => api.post('/api/vendor/logout'),
-  getMe: () => api.get('/api/vendor/me'),
-  changePassword: (currentPassword: string, newPassword: string) =>
-    api.post('/api/vendor/change-password', { current_password: currentPassword, new_password: newPassword }),
+  login: (email: string, password: string) => 
+    apiClient.post('/api/auth/login', { email, password }),
+  
+  logout: () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('user');
+    return Promise.resolve();
+  },
+  
+  getMe: () => 
+    apiClient.get('/api/auth/me'),
 };
 
 // Vendor API
 export const vendorAPI = {
-  getProfile: () => api.get('/api/vendor/profile'),
-  updateProfile: (data: any) => api.put('/api/vendor/profile', data),
-  updateWorkingHours: (data: any) => api.put('/api/vendor/working-hours', data),
-  getDocuments: () => api.get('/api/vendor/documents'),
-  uploadDocument: (file: File, documentType: string) => {
-    const formData = new FormData();
-    formData.append('document', file);
-    formData.append('document_type', documentType);
-    return api.post('/api/vendor/documents/upload', formData, {
-      headers: { 'Content-Type': 'multipart/form-data' },
-    });
-  },
-};
-
-// Dashboard API
-export const dashboardAPI = {
-  getStats: (period?: string) => api.get('/api/vendor/dashboard', { params: { period } }),
+  getProfile: () => 
+    apiClient.get('/api/vendor/profile'),
+  
+  updateProfile: (data: any) => 
+    apiClient.put('/api/vendor/profile', data),
 };
 
 // Products API
 export const productsAPI = {
-  getAll: (params?: any) => api.get('/api/vendor/products', { params }),
-  getOne: (id: string) => api.get(`/api/vendor/products/${id}`),
-  create: (data: any) => api.post('/api/vendor/products', data),
-  update: (id: string, data: any) => api.put(`/api/vendor/products/${id}`, data),
-  delete: (id: string) => api.delete(`/api/vendor/products/${id}`),
-  getCategories: () => api.get('/api/vendor/products/categories'),
+  getAll: (params?: any) => 
+    apiClient.get('/api/vendor/products', { params }),
+  
+  getById: (id: string) => 
+    apiClient.get(`/api/vendor/products/${id}`),
+  
+  create: (data: any) => 
+    apiClient.post('/api/vendor/products', data),
+  
+  update: (id: string, data: any) => 
+    apiClient.put(`/api/vendor/products/${id}`, data),
+  
+  delete: (id: string) => 
+    apiClient.delete(`/api/vendor/products/${id}`),
 };
 
 // Orders API
 export const ordersAPI = {
-  getAll: (params?: any) => api.get('/api/vendor/orders', { params }),
-  getOne: (id: string) => api.get(`/api/vendor/orders/${id}`),
-  updateStatus: (id: string, status: string, note?: string) =>
-    api.put(`/api/vendor/orders/${id}/status`, { status, note }),
+  getAll: (params?: any) => 
+    apiClient.get('/api/vendor/orders', { params }),
+  
+  getById: (id: string) => 
+    apiClient.get(`/api/vendor/orders/${id}`),
+  
+  updateStatus: (id: string, status: string, note?: string) => 
+    apiClient.put(`/api/vendor/orders/${id}/status`, { status, note }),
 };
 
-export default api;
+// Dashboard API
+export const dashboardAPI = {
+  getStats: () => 
+    apiClient.get('/api/vendor/dashboard'),
+};
+
+export default apiClient;
