@@ -83,7 +83,9 @@ const Products: React.FC = () => {
       min_stock_threshold: product.min_stock_threshold.toString(),
       status: product.status,
       description: product.description || '',
+      images: product.images || [],
     });
+    setImagePreviews(product.images || []);
     setShowModal(true);
   };
 
