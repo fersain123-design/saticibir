@@ -41,10 +41,10 @@ apiClient.interceptors.response.use(
   }
 );
 
-// Auth API
+// Auth API - Using existing backend endpoints
 export const authAPI = {
   login: (email: string, password: string) => 
-    apiClient.post('/api/auth/login', { email, password }),
+    apiClient.post('/api/vendor/login', { email, password }),
   
   logout: () => {
     localStorage.removeItem('access_token');
@@ -53,7 +53,7 @@ export const authAPI = {
   },
   
   getMe: () => 
-    apiClient.get('/api/auth/me'),
+    apiClient.get('/api/vendor/me'),
 };
 
 // Vendor API

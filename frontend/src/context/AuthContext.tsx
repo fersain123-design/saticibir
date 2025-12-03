@@ -4,8 +4,10 @@ import { authAPI } from '../services/api.ts';
 interface User {
   id: string;
   email: string;
-  full_name: string;
+  full_name?: string;
+  store_name?: string;
   role: string;
+  status?: string;
   [key: string]: any;
 }
 
@@ -37,17 +39,22 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
     try {
       const response = await authAPI.getMe();
-      const userData = response.data;
+      const responseData = response.data.data || response.data;
+      const vendorData = responseData.vendor || responseData;
       
-      // Check if user role is vendor or admin
-      if (userData.role !== 'vendor' && userData.role !== 'admin') {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('user');
-        setUser(null);
-      } else {
-        setUser(userData);
-        localStorage.setItem('user', JSON.stringify(userData));
-      }
+      // Convert vendor data to user format
+      const userData: User = {
+        id: vendorData.id,
+        email: vendorData.email,
+        full_name: vendorData.owner_name || vendorData.store_name,
+        store_name: vendorData.store_name,
+        role: 'vendor',
+        status: vendorData.status,
+        ...vendorData
+      };
+      
+      setUser(userData);
+      localStorage.setItem('user', JSON.stringify(userData));
     } catch (error) {
       console.error('Auth check failed:', error);
       localStorage.removeItem('access_token');
@@ -60,12 +67,30 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = async (email: string, password: string) => {
     const response = await authAPI.login(email, password);
-    const { access_token, user: userData } = response.data;
     
-    // Check if user is vendor or admin
-    if (userData.role !== 'vendor' && userData.role !== 'admin') {
-      throw new Error('Bu paneli sadece satıcı (vendor) hesapları kullanabilir.');
+    // Handle response format: { success: true, data: { access_token, vendor } }
+    const responseData = response.data.data || response.data;
+    const { access_token, vendor } = responseData;
+    
+    if (!access_token || !vendor) {
+      throw new Error('Geçersiz yanıt formatı');
     }
+    
+    // Check if vendor is approved
+    if (vendor.status !== 'approved') {
+      throw new Error('Hesabınız henüz onaylanmamış. Lütfen onay sürecinin tamamlanmasını bekleyin.');
+    }
+    
+    // Convert vendor to user format
+    const userData: User = {
+      id: vendor.id,
+      email: vendor.email,
+      full_name: vendor.owner_name || vendor.store_name,
+      store_name: vendor.store_name,
+      role: 'vendor',
+      status: vendor.status,
+      ...vendor
+    };
     
     localStorage.setItem('access_token', access_token);
     localStorage.setItem('user', JSON.stringify(userData));
