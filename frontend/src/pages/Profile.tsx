@@ -16,6 +16,12 @@ const Profile: React.FC = () => {
     store_description: vendor?.store_description || '',
   });
 
+  const [paymentData, setPaymentData] = useState({
+    account_holder_name: vendor?.payment_info?.account_holder_name || '',
+    bank_name: vendor?.payment_info?.bank_name || '',
+    iban: vendor?.payment_info?.iban || '',
+  });
+
   const [passwordData, setPasswordData] = useState({
     current_password: '',
     new_password: '',
