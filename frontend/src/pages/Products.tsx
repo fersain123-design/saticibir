@@ -121,6 +121,34 @@ const Products: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const newFiles = Array.from(files);
+    setImageFiles([...imageFiles, ...newFiles]);
+
+    // Create preview URLs
+    const newPreviews = newFiles.map(file => URL.createObjectURL(file));
+    setImagePreviews([...imagePreviews, ...newPreviews]);
+
+    // Simulate upload - in production, upload to server and get URLs
+    const mockUrls = newFiles.map((file, index) => 
+      `/uploads/products/${Date.now()}_${index}_${file.name}`
+    );
+    setFormData({ ...formData, images: [...formData.images, ...mockUrls] });
+  };
+
+  const handleRemoveImage = (index: number) => {
+    const newFiles = imageFiles.filter((_, i) => i !== index);
+    const newPreviews = imagePreviews.filter((_, i) => i !== index);
+    const newImages = formData.images.filter((_, i) => i !== index);
+
+    setImageFiles(newFiles);
+    setImagePreviews(newPreviews);
+    setFormData({ ...formData, images: newImages });
+  };
+
   if (loading && products.length === 0) {
     return (
       <div className="flex items-center justify-center h-64">
