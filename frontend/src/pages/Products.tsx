@@ -423,6 +423,63 @@ const Products: React.FC = () => {
                 />
               </div>
 
+              {/* Image Upload Section */}
+              <div>
+                <label className="block text-sm font-medium text-text-primary mb-2">
+                  Ürün Fotoğrafları
+                  <span className="text-text-secondary text-xs ml-2">(Birden fazla fotoğraf ekleyebilirsiniz)</span>
+                </label>
+                
+                {/* Image Preview Grid */}
+                {imagePreviews.length > 0 && (
+                  <div className="grid grid-cols-4 gap-3 mb-3">
+                    {imagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`Preview ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg border-2 border-primary/20"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveImage(index)}
+                          className="absolute top-1 right-1 bg-error text-white rounded-full w-6 h-6 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          ×
+                        </button>
+                        {index === 0 && (
+                          <span className="absolute bottom-1 left-1 bg-primary text-white text-xs px-2 py-0.5 rounded">
+                            Ana
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Upload Button */}
+                <div className="flex items-center justify-center w-full">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-primary/30 border-dashed rounded-xl cursor-pointer bg-white hover:bg-primary/5 transition-colors">
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <svg className="w-10 h-10 mb-3 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                      <p className="mb-2 text-sm text-text-primary">
+                        <span className="font-semibold">Fotoğraf yüklemek için tıklayın</span>
+                      </p>
+                      <p className="text-xs text-text-secondary">PNG, JPG veya WEBP (MAX. 5MB)</p>
+                    </div>
+                    <input
+                      type="file"
+                      multiple
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              </div>
+
               <div className="flex justify-end space-x-3">
                 <button
                   type="button"
