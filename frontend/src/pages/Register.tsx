@@ -46,7 +46,6 @@ const Register: React.FC = () => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setTaxSheetFile(file);
-      // Simulate upload - in real app, upload to server first
       setFormData(prev => ({ ...prev, tax_sheet_url: `/uploads/tax_${Date.now()}.pdf` }));
     }
   };
@@ -113,14 +112,15 @@ const Register: React.FC = () => {
   if (success) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center p-4">
-        <div className="max-w-md w-full bg-white rounded-2xl shadow-lg p-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-success/10 rounded-full mb-4">
-            <svg className="w-8 h-8 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="max-w-md w-full text-center">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-success/20 rounded-full mb-6">
+            <svg className="w-10 h-10 text-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-text-primary mb-2">Kayıt Başarılı!</h2>
-          <p className="text-text-secondary mb-4">Hesabınız inceleme aşamasındadır. Onaylanma sürecinden sonra giriş yapabileceksiniz.</p>
+          <h2 className="text-3xl font-bold text-primary mb-3">Kayıt Başarılı!</h2>
+          <p className="text-text-secondary text-lg mb-2">Hesabınız inceleme aşamasındadır.</p>
+          <p className="text-text-secondary mb-6">Onaylanma sürecinden sonra giriş yapabileceksiniz.</p>
           <p className="text-sm text-text-secondary">Giriş sayfasına yönlendiriliyorsunuz...</p>
         </div>
       </div>
@@ -129,33 +129,39 @@ const Register: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="max-w-2xl w-full bg-white rounded-2xl shadow-lg p-8">
+      <div className="max-w-2xl w-full">
+        {/* Logo Section */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
             <img src="/logo.png" alt="Manavım Logo" className="h-20 w-auto" />
           </div>
-          <h1 className="text-2xl font-bold text-text-primary">Satıcı Kayıt</h1>
-          <p className="text-text-secondary mt-2">Adım {step}/3</p>
+          <h1 className="text-3xl font-bold text-primary mb-2">Satıcı Kayıt</h1>
+          <p className="text-text-secondary text-lg">Adım {step}/3</p>
         </div>
 
         {/* Progress Bar */}
         <div className="mb-8">
-          <div className="flex justify-between mb-2">
-            <span className={`text-sm ${step >= 1 ? 'text-primary font-medium' : 'text-gray-400'}`}>Hesap Bilgileri</span>
-            <span className={`text-sm ${step >= 2 ? 'text-primary font-medium' : 'text-gray-400'}`}>Mağaza Bilgileri</span>
-            <span className={`text-sm ${step >= 3 ? 'text-primary font-medium' : 'text-gray-400'}`}>Belgeler</span>
+          <div className="flex justify-between mb-3">
+            <span className={`text-sm font-medium ${step >= 1 ? 'text-primary' : 'text-gray-400'}`}>Hesap Bilgileri</span>
+            <span className={`text-sm font-medium ${step >= 2 ? 'text-primary' : 'text-gray-400'}`}>Mağaza Bilgileri</span>
+            <span className={`text-sm font-medium ${step >= 3 ? 'text-primary' : 'text-gray-400'}`}>Belgeler</span>
           </div>
-          <div className="h-2 bg-gray-200 rounded-full">
-            <div className="h-2 bg-primary rounded-full transition-all" style={{ width: `${(step / 3) * 100}%` }} />
+          <div className="h-3 bg-white rounded-full border-2 border-primary/20">
+            <div 
+              className="h-full bg-primary rounded-full transition-all duration-300" 
+              style={{ width: `${(step / 3) * 100}%` }} 
+            />
           </div>
         </div>
 
+        {/* Error Message */}
         {error && (
-          <div className="mb-4 p-3 bg-error/5 border border-error text-error rounded-lg">
+          <div className="mb-6 p-4 bg-error/10 border-2 border-error text-error rounded-xl text-center">
             {error}
           </div>
         )}
 
+        {/* Form - Direct on background */}
         <form onSubmit={step === 3 ? handleSubmit : (e) => { e.preventDefault(); handleNext(); }}>
           {/* Step 1: Account Info */}
           {step === 1 && (
@@ -167,7 +173,7 @@ const Register: React.FC = () => {
                   name="owner_name"
                   value={formData.owner_name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                   required
                 />
               </div>
@@ -179,7 +185,7 @@ const Register: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -190,7 +196,7 @@ const Register: React.FC = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -203,7 +209,7 @@ const Register: React.FC = () => {
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -214,7 +220,7 @@ const Register: React.FC = () => {
                     name="password_confirm"
                     value={formData.password_confirm}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -232,7 +238,7 @@ const Register: React.FC = () => {
                   name="store_name"
                   value={formData.store_name}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                   required
                 />
               </div>
@@ -243,7 +249,7 @@ const Register: React.FC = () => {
                     name="store_type"
                     value={formData.store_type}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                   >
                     <option value="">Seçiniz</option>
                     <option value="manav">Manav</option>
@@ -258,7 +264,7 @@ const Register: React.FC = () => {
                     name="tax_number"
                     value={formData.tax_number}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                   />
                 </div>
               </div>
@@ -269,7 +275,7 @@ const Register: React.FC = () => {
                   name="tax_office"
                   value={formData.tax_office}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                 />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -280,7 +286,7 @@ const Register: React.FC = () => {
                     name="address.province"
                     value={formData.address.province}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -291,7 +297,7 @@ const Register: React.FC = () => {
                     name="address.district"
                     value={formData.address.district}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                    className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                     required
                   />
                 </div>
@@ -303,7 +309,7 @@ const Register: React.FC = () => {
                   value={formData.address.full_address}
                   onChange={handleChange}
                   rows={3}
-                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
                   required
                 />
               </div>
@@ -313,9 +319,9 @@ const Register: React.FC = () => {
           {/* Step 3: Documents */}
           {step === 3 && (
             <div className="space-y-4">
-              <div className="bg-warning/5 border border-warning rounded-lg p-4 mb-4">
-                <p className="text-warning font-medium">Vergi levhası yüklenmesi ZORUNLUDUR</p>
-                <p className="text-yellow-700 text-sm mt-1">PDF, JPG veya PNG formatında yükleyebilirsiniz</p>
+              <div className="bg-warning/10 border-2 border-warning rounded-xl p-4 mb-4">
+                <p className="text-warning font-semibold text-lg">⚠️ Vergi levhası yüklenmesi ZORUNLUDUR</p>
+                <p className="text-warning/80 text-sm mt-1">PDF, JPG veya PNG formatında yükleyebilirsiniz</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-text-primary mb-2">Vergi Levhası *</label>
@@ -323,31 +329,32 @@ const Register: React.FC = () => {
                   type="file"
                   accept=".pdf,.jpg,.jpeg,.png"
                   onChange={handleFileChange}
-                  className="w-full px-4 py-2 border border-gray-light rounded-lg focus:ring-2 focus:ring-primary"
+                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white file:cursor-pointer hover:file:bg-primary-600"
                   required
                 />
                 {taxSheetFile && (
-                  <p className="text-sm text-primary mt-2">✓ {taxSheetFile.name} seçildi</p>
+                  <p className="text-sm text-success mt-2 font-medium">✓ {taxSheetFile.name} seçildi</p>
                 )}
               </div>
             </div>
           )}
 
-          <div className="flex justify-between mt-8">
+          {/* Navigation Buttons */}
+          <div className="flex justify-between mt-8 gap-4">
             {step > 1 && (
               <button
                 type="button"
                 onClick={() => setStep(step - 1)}
-                className="px-6 py-2 border border-gray-light rounded-lg text-text-primary hover:bg-gray-50"
+                className="flex-1 px-6 py-3 border-2 border-primary/30 rounded-xl text-primary hover:bg-primary/5 transition-all font-semibold"
               >
                 Geri
               </button>
             )}
-            <div className="ml-auto">
+            <div className={step === 1 ? 'w-full' : 'flex-1'}>
               {step < 3 ? (
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600"
+                  className="w-full px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 transition-all font-semibold shadow-md hover:shadow-lg"
                 >
                   Devam
                 </button>
@@ -355,7 +362,7 @@ const Register: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:bg-gray-400"
+                  className="w-full px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 disabled:bg-gray-400 transition-all font-semibold shadow-md hover:shadow-lg"
                 >
                   {loading ? 'Kayıt yapılıyor...' : 'Kayıt Ol'}
                 </button>
@@ -364,10 +371,11 @@ const Register: React.FC = () => {
           </div>
         </form>
 
+        {/* Login Link */}
         <div className="mt-6 text-center">
           <p className="text-text-secondary">
             Zaten hesabınız var mı?{' '}
-            <Link to="/login" className="text-primary hover:text-primary-700 font-medium">
+            <Link to="/login" className="text-primary hover:text-primary-600 font-semibold">
               Giriş Yap
             </Link>
           </p>
