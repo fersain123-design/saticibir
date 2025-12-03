@@ -41,6 +41,7 @@ export interface Product {
   status: 'active' | 'inactive';
   description?: string;
   image_url?: string;
+  images?: string[];
   created_at: string;
 }
 
