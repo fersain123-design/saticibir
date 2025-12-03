@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBAN Form Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#0A6A40',
+                            600: '#085533',
+                        },
+                        accent: {
+                            DEFAULT: '#E8A400',
+                        },
+                        background: '#F6EEDF',
+                        success: '#10B981',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background p-8">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <h1 class="text-3xl font-bold text-primary">Profil Ayarları - IBAN Test</h1>
+
+        <!-- Payment Information - IBAN -->
+        <form class="bg-white rounded-lg shadow p-6 space-y-4">
+            <div class="flex items-center justify-between mb-4">
+                <h2 class="text-lg font-semibold text-gray-900">Ödeme Bilgileri</h2>
+                <span class="text-xs text-gray-600 bg-accent/10 px-3 py-1 rounded-full">
+                    💰 Para Çekme İçin
+                </span>
+            </div>
+            
+            <div class="bg-accent/5 border-l-4 border-accent p-4 rounded-lg mb-4">
+                <p class="text-sm text-gray-900">
+                    <strong>💡 Bilgi:</strong> Kazancınızı çekmek için banka hesap bilgilerinizi ekleyin.
+                </p>
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">
+                    Hesap Sahibinin Adı Soyadı *
+                </label>
+                <input
+                    type="text"
+                    placeholder="Ahmet Yılmaz"
+                    class="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                />
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">
+                    Banka Adı *
+                </label>
+                <input
+                    type="text"
+                    placeholder="Ziraat Bankası, İş Bankası, Garanti BBVA vb."
+                    class="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
+                />
+            </div>
+
+            <div>
+                <label class="block text-sm font-medium text-gray-900 mb-2">
+                    IBAN *
+                </label>
+                <input
+                    type="text"
+                    placeholder="TR00 0000 0000 0000 0000 0000 00"
+                    maxlength="32"
+                    class="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all font-mono"
+                />
+                <p class="text-xs text-gray-500 mt-1">
+                    IBAN numaranızı boşluksuz veya boşluklu girebilirsiniz
+                </p>
+            </div>
+
+            <!-- Current IBAN Display -->
+            <div class="bg-success/5 border border-success/20 rounded-xl p-4">
+                <p class="text-sm font-semibold text-success mb-2">✓ Kayıtlı IBAN Bilgileri</p>
+                <div class="space-y-1 text-sm">
+                    <p>
+                        <span class="text-gray-500">Hesap Sahibi:</span>
+                        <span class="font-medium ml-2">Ahmet Yılmaz</span>
+                    </p>
+                    <p>
+                        <span class="text-gray-500">Banka:</span>
+                        <span class="font-medium ml-2">Ziraat Bankası</span>
+                    </p>
+                    <p>
+                        <span class="text-gray-500">IBAN:</span>
+                        <span class="font-mono font-medium ml-2">TR33 0006 1005 1978 6457 8413 26</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex justify-end">
+                <button
+                    type="submit"
+                    class="px-6 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 transition-all font-semibold shadow-md hover:shadow-lg"
+                >
+                    IBAN Bilgilerini Kaydet
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
