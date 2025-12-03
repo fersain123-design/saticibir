@@ -29,21 +29,19 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
             </svg>
           </button>
           <div>
-            <h1 className="text-lg font-semibold text-text-primary">{vendor?.store_name}</h1>
-            <p className="text-sm text-text-secondary">{vendor?.email}</p>
+            <h1 className="text-lg font-semibold text-text-primary">{user?.full_name || 'Satıcı Paneli'}</h1>
+            <p className="text-sm text-text-secondary">{user?.email}</p>
           </div>
         </div>
 
         <div className="flex items-center space-x-4">
-          {getStatusBadge()}
-          
           <div className="relative">
             <button
               onClick={() => setShowDropdown(!showDropdown)}
               className="flex items-center space-x-2 text-text-primary hover:text-primary"
             >
               <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-semibold">
-                {vendor?.owner_name?.charAt(0) || 'S'}
+                {user?.full_name?.charAt(0) || 'S'}
               </div>
             </button>
 
