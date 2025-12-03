@@ -7,28 +7,13 @@ interface TopbarProps {
 }
 
 const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
-  const { vendor, logout } = useAuth();
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = React.useState(false);
 
   const handleLogout = async () => {
-    await logout();
+    logout();
     navigate('/login');
-  };
-
-  const getStatusBadge = () => {
-    switch (vendor?.status) {
-      case 'approved':
-        return <span className="px-2 py-1 text-xs bg-success/10 text-success rounded-full font-medium">✓ Onaylı</span>;
-      case 'pending_review':
-        return <span className="px-2 py-1 text-xs bg-warning/10 text-warning rounded-full font-medium">⏳ İnceleniyor</span>;
-      case 'rejected':
-        return <span className="px-2 py-1 text-xs bg-error/10 text-error rounded-full font-medium">✕ Reddedildi</span>;
-      case 'suspended':
-        return <span className="px-2 py-1 text-xs bg-gray/10 text-gray rounded-full font-medium">⊘ Askıda</span>;
-      default:
-        return null;
-    }
   };
 
   return (
