@@ -108,8 +108,11 @@ const Products: React.FC = () => {
       min_stock_threshold: '10',
       status: 'active',
       description: '',
+      images: [],
     });
     setEditingProduct(null);
+    setImageFiles([]);
+    setImagePreviews([]);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
