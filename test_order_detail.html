@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sipariş Detayı - Yol Tarifi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: '#0A6A40',
+                            600: '#085533',
+                        },
+                        background: '#F6EEDF',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background p-8">
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-6">Sipariş Detayı</h2>
+
+        <!-- Customer Info -->
+        <div>
+            <h3 class="font-semibold text-gray-900 mb-3">Müşteri Bilgileri</h3>
+            <div class="bg-background rounded-lg p-4 space-y-3">
+                <p>
+                    <span class="text-gray-600">Ad:</span>
+                    <span class="font-medium ml-2">Ahmet Yılmaz</span>
+                </p>
+                <p>
+                    <span class="text-gray-600">Telefon:</span>
+                    <a href="tel:+905551234567" class="font-medium text-primary hover:text-primary-600 underline ml-2">
+                        +90 555 123 45 67
+                    </a>
+                </p>
+                <div>
+                    <p class="text-gray-600 mb-2">Teslimat Adresi:</p>
+                    <p class="font-medium mb-3">Atatürk Caddesi No:123, Kadıköy/İstanbul</p>
+                    
+                    <!-- Yol Tarifi Butonu -->
+                    <button
+                        onclick="window.open('https://www.google.com/maps/search/?api=1&query=Atatürk+Caddesi+No:123,+Kadıköy/İstanbul', '_blank')"
+                        class="flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 transition-all font-semibold shadow-md hover:shadow-lg"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        Yol Tarifi Al
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="mt-6">
+            <h3 class="font-semibold text-gray-900 mb-3">Ürünler</h3>
+            <div class="border rounded-lg overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-background">
+                        <tr>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Ürün</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-600">Miktar</th>
+                            <th class="px-4 py-2 text-right text-sm font-medium text-gray-600">Toplam</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y">
+                        <tr>
+                            <td class="px-4 py-3 text-sm">Domates</td>
+                            <td class="px-4 py-3 text-sm">2 kg</td>
+                            <td class="px-4 py-3 text-sm text-right font-medium">₺30.00</td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-3 text-sm">Salatalık</td>
+                            <td class="px-4 py-3 text-sm">1 kg</td>
+                            <td class="px-4 py-3 text-sm text-right font-medium">₺15.00</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Total -->
+        <div class="mt-6 border-t pt-4">
+            <div class="flex justify-between text-lg font-bold">
+                <span>Genel Toplam</span>
+                <span class="text-primary">₺45.00</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
