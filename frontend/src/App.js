@@ -8,6 +8,7 @@ import Register from './pages/Register.tsx';
 import Dashboard from './pages/Dashboard.tsx';
 import Products from './pages/Products.tsx';
 import Orders from './pages/Orders.tsx';
+import Campaigns from './pages/Campaigns.tsx';
 import Profile from './pages/Profile.tsx';
 import './App.css';
 
