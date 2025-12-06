@@ -35,11 +35,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo Section - Compact & Professional */}
+          {/* Logo Section - Fixed container, bigger logo inside */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary/5 to-background">
             <div className="flex items-center space-x-2.5 flex-1">
-              <div className="bg-white p-1.5 rounded-lg shadow-sm border border-primary/10">
-                <img src="/logo.png" alt="Manavım Logo" className="h-8 w-auto" />
+              <div className="bg-white p-1 rounded-lg shadow-sm border border-primary/10">
+                <img src="/logo.png" alt="Manavım Logo" className="h-9 w-auto" />
               </div>
               <div>
                 <span className="text-base font-bold text-primary block leading-tight">Manavım</span>

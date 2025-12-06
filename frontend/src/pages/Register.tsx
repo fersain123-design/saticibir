@@ -130,11 +130,11 @@ const Register: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
-        {/* Logo Section - More Compact */}
+        {/* Logo Section - Fixed container, bigger logo inside */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="bg-white p-2.5 rounded-xl shadow-md border border-primary/15">
-              <img src="/logo.png" alt="Manavım Logo" className="h-12 w-auto" />
+            <div className="bg-white p-2 rounded-xl shadow-md border border-primary/15">
+              <img src="/logo.png" alt="Manavım Logo" className="h-14 w-auto" />
             </div>
           </div>
           <h1 className="text-3xl font-bold text-primary mb-2">Satıcı Kayıt</h1>
