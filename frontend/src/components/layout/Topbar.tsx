@@ -10,11 +10,21 @@ const Topbar: React.FC<TopbarProps> = ({ onMenuClick }) => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [showDropdown, setShowDropdown] = React.useState(false);
+  const [showNotifications, setShowNotifications] = React.useState(false);
 
   const handleLogout = async () => {
     logout();
     navigate('/login');
   };
+
+  // Mock notifications
+  const notifications = [
+    { id: '1', type: 'order', message: 'Yeni sipariş! #12345', time: '5 dk önce', read: false },
+    { id: '2', type: 'review', message: 'Yeni yorum: Domates', time: '1 saat önce', read: false },
+    { id: '3', type: 'stock', message: 'Düşük stok: Salatalık', time: '2 saat önce', read: true },
+  ];
+
+  const unreadCount = notifications.filter(n => !n.read).length;
 
   return (
     <header className="bg-white shadow-sm border-b">
