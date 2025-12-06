@@ -242,19 +242,40 @@ const Orders: React.FC = () => {
               {/* Customer Info */}
               <div>
                 <h3 className="font-semibold text-text-primary mb-3">Müşteri Bilgileri</h3>
-                <div className="bg-background rounded-lg p-4 space-y-2">
+                <div className="bg-background rounded-lg p-4 space-y-3">
                   <p>
                     <span className="text-text-secondary">Ad:</span>{' '}
                     <span className="font-medium">{selectedOrder.customer_info.name}</span>
                   </p>
                   <p>
                     <span className="text-text-secondary">Telefon:</span>{' '}
-                    <span className="font-medium">{selectedOrder.customer_info.phone}</span>
+                    <a 
+                      href={`tel:${selectedOrder.customer_info.phone}`}
+                      className="font-medium text-primary hover:text-primary-600 underline"
+                    >
+                      {selectedOrder.customer_info.phone}
+                    </a>
                   </p>
-                  <p>
-                    <span className="text-text-secondary">Adres:</span>{' '}
-                    <span className="font-medium">{selectedOrder.customer_info.address}</span>
-                  </p>
+                  <div>
+                    <p className="text-text-secondary mb-2">Teslimat Adresi:</p>
+                    <p className="font-medium mb-3">{selectedOrder.customer_info.address}</p>
+                    
+                    {/* Yol Tarifi Butonu */}
+                    <button
+                      onClick={() => {
+                        const address = encodeURIComponent(selectedOrder.customer_info.address);
+                        // Google Maps'te aç (hem mobil hem web için çalışır)
+                        window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                      }}
+                      className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-primary text-white rounded-xl hover:bg-primary-600 transition-all font-semibold shadow-md hover:shadow-lg"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      Yol Tarifi Al
+                    </button>
+                  </div>
                 </div>
               </div>
 
