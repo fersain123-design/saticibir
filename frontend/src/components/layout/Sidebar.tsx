@@ -13,6 +13,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { path: '/dashboard', icon: '📊', label: 'Dashboard' },
     { path: '/products', icon: '📦', label: 'Ürünler' },
     { path: '/orders', icon: '🛒', label: 'Siparişler' },
+    { path: '/campaigns', icon: '🎯', label: 'Kampanyalar' },
     { path: '/profile', icon: '⚙️', label: 'Profil' },
   ];
 
