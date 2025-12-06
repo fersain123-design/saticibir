@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const menuItems = [
     { path: '/dashboard', icon: '📊', label: 'Dashboard' },
     { path: '/products', icon: '📦', label: 'Ürünler' },
-    { path: '/orders', icon: '🛍️', label: 'Siparişler' },
+    { path: '/orders', icon: '🛒', label: 'Siparişler' },
     { path: '/profile', icon: '⚙️', label: 'Profil' },
   ];
 
@@ -35,15 +35,15 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo Section - Professional Design */}
+          {/* Logo Section - Compact & Professional */}
           <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary/5 to-background">
-            <div className="flex items-center space-x-3 flex-1">
-              <div className="bg-white p-2 rounded-xl shadow-sm border-2 border-primary/10">
-                <img src="/logo.png" alt="Manavım Logo" className="h-10 w-auto" />
+            <div className="flex items-center space-x-2.5 flex-1">
+              <div className="bg-white p-1.5 rounded-lg shadow-sm border border-primary/10">
+                <img src="/logo.png" alt="Manavım Logo" className="h-8 w-auto" />
               </div>
               <div>
-                <span className="text-lg font-bold text-primary block">Manavım</span>
-                <span className="text-xs text-text-secondary">Satıcı Paneli</span>
+                <span className="text-base font-bold text-primary block leading-tight">Manavım</span>
+                <span className="text-[10px] text-text-secondary leading-tight">Satıcı Paneli</span>
               </div>
             </div>
             <button onClick={onClose} className="lg:hidden text-text-secondary hover:text-text-primary text-xl">

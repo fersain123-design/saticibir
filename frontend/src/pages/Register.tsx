@@ -130,11 +130,11 @@ const Register: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="max-w-2xl w-full">
-        {/* Logo Section - Professional Design */}
+        {/* Logo Section - More Compact */}
         <div className="text-center mb-8">
           <div className="flex justify-center mb-4">
-            <div className="bg-white p-3 rounded-2xl shadow-lg border-2 border-primary/20">
-              <img src="/logo.png" alt="Manavım Logo" className="h-16 w-auto" />
+            <div className="bg-white p-2.5 rounded-xl shadow-md border border-primary/15">
+              <img src="/logo.png" alt="Manavım Logo" className="h-12 w-auto" />
             </div>
           </div>
           <h1 className="text-3xl font-bold text-primary mb-2">Satıcı Kayıt</h1>
@@ -256,7 +256,7 @@ const Register: React.FC = () => {
                     <option value="">Seçiniz</option>
                     <option value="manav">Manav</option>
                     <option value="market">Market</option>
-                    <option value="sarkuteri">Sarküteri</option>
+                    <option value="sarkuteri">Şarküteri</option>
                   </select>
                 </div>
                 <div>
