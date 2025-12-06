@@ -9,6 +9,11 @@ import Dashboard from './pages/Dashboard.tsx';
 import Products from './pages/Products.tsx';
 import Orders from './pages/Orders.tsx';
 import Campaigns from './pages/Campaigns.tsx';
+import Payments from './pages/Payments.tsx';
+import Analytics from './pages/Analytics.tsx';
+import Reviews from './pages/Reviews.tsx';
+import Messages from './pages/Messages.tsx';
+import Help from './pages/Help.tsx';
 import Profile from './pages/Profile.tsx';
 import './App.css';
 
