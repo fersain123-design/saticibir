@@ -53,6 +53,11 @@ function AppContent() {
         <Route path="products" element={<Products />} />
         <Route path="orders" element={<Orders />} />
         <Route path="campaigns" element={<Campaigns />} />
+        <Route path="payments" element={<Payments />} />
+        <Route path="analytics" element={<Analytics />} />
+        <Route path="reviews" element={<Reviews />} />
+        <Route path="messages" element={<Messages />} />
+        <Route path="help" element={<Help />} />
         <Route path="profile" element={<Profile />} />
       </Route>
 
