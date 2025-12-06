@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const menuItems = [
     { path: '/dashboard', icon: '📊', label: 'Dashboard' },
     { path: '/products', icon: '📦', label: 'Ürünler' },
-    { path: '/orders', icon: '🛒', label: 'Siparişler' },
+    { path: '/orders', icon: '🛍️', label: 'Siparişler' },
     { path: '/profile', icon: '⚙️', label: 'Profil' },
   ];
 
@@ -35,13 +35,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
         }`}
       >
         <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="flex items-center justify-between p-6 border-b">
-            <div className="flex items-center space-x-3">
-              <img src="/logo.png" alt="Manavım Logo" className="h-12 w-auto" />
-              <span className="text-xl font-bold text-text-primary">Satıcı Paneli</span>
+          {/* Logo Section - Professional Design */}
+          <div className="flex items-center justify-between p-4 border-b bg-gradient-to-r from-primary/5 to-background">
+            <div className="flex items-center space-x-3 flex-1">
+              <div className="bg-white p-2 rounded-xl shadow-sm border-2 border-primary/10">
+                <img src="/logo.png" alt="Manavım Logo" className="h-10 w-auto" />
+              </div>
+              <div>
+                <span className="text-lg font-bold text-primary block">Manavım</span>
+                <span className="text-xs text-text-secondary">Satıcı Paneli</span>
+              </div>
             </div>
-            <button onClick={onClose} className="lg:hidden text-text-secondary hover:text-text-primary">
+            <button onClick={onClose} className="lg:hidden text-text-secondary hover:text-text-primary text-xl">
               ✕
             </button>
           </div>
@@ -55,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
                 onClick={onClose}
                 className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                   isActive(item.path)
-                    ? 'bg-primary-50 text-primary font-medium'
+                    ? 'bg-primary text-white font-medium shadow-md'
                     : 'text-text-secondary hover:bg-background'
                 }`}
               >
@@ -66,7 +71,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           </nav>
 
           {/* Footer */}
-          <div className="p-4 border-t text-sm text-text-secondary">
+          <div className="p-4 border-t text-sm text-text-secondary bg-background">
             © 2024 Manavım - Satıcı Paneli
           </div>
         </div>
