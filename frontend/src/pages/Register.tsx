@@ -16,7 +16,6 @@ const Register: React.FC = () => {
     password: '',
     password_confirm: '',
     store_name: '',
-    store_type: '',
     tax_number: '',
     tax_office: '',
     address: {
