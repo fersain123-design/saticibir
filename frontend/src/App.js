@@ -17,6 +17,7 @@ import Reviews from './pages/Reviews.tsx';
 import Messages from './pages/Messages.tsx';
 import Help from './pages/Help.tsx';
 import Profile from './pages/Profile.tsx';
+import SmartInventory from './pages/SmartInventory.tsx';
 import './App.css';
 
 const PublicRoute = ({ children }) => {
