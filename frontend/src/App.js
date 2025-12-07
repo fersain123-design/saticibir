@@ -54,8 +54,11 @@ function AppContent() {
         <Route index element={<Navigate to="/dashboard" replace />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
+        <Route path="products-advanced" element={<ProductsAdvanced />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="smart-inventory" element={<SmartInventory />} />
         <Route path="campaigns" element={<Campaigns />} />
+        <Route path="multi-channel" element={<MultiChannel />} />
         <Route path="payments" element={<Payments />} />
         <Route path="analytics" element={<Analytics />} />
         <Route path="reviews" element={<Reviews />} />
