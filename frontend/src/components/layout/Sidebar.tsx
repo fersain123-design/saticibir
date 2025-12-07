@@ -11,9 +11,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { path: '/dashboard', icon: '📊', label: 'Dashboard' },
+    { path: '/products-advanced', icon: '🎨', label: 'Gelişmiş Ürünler' },
     { path: '/products', icon: '📦', label: 'Ürünler' },
     { path: '/orders', icon: '🛒', label: 'Siparişler' },
     { path: '/campaigns', icon: '🎯', label: 'Kampanyalar' },
+    { path: '/multi-channel', icon: '🌐', label: 'Çok Kanallı Satış' },
     { path: '/payments', icon: '💰', label: 'Ödemeler' },
     { path: '/analytics', icon: '📈', label: 'Analitik' },
     { path: '/reviews', icon: '⭐', label: 'Yorumlar' },
