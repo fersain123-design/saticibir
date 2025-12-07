@@ -51,11 +51,30 @@ const Products: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
+      let uploadedImageUrls: string[] = [];
+
+      // Upload images if there are new files
+      if (imageFiles.length > 0) {
+        try {
+          const uploadPromises = imageFiles.map(file => productsAPI.uploadImage(file));
+          const uploadResults = await Promise.all(uploadPromises);
+          uploadedImageUrls = uploadResults.map(res => res.data.url || res.data.image_url);
+        } catch (uploadErr) {
+          console.error('Image upload failed:', uploadErr);
+          // Continue with existing mock URLs if upload fails
+          uploadedImageUrls = formData.images;
+        }
+      } else {
+        // Use existing images
+        uploadedImageUrls = formData.images;
+      }
+
       const data = {
         ...formData,
         price: parseFloat(formData.price),
         stock: parseInt(formData.stock),
         min_stock_threshold: parseInt(formData.min_stock_threshold),
+        images: uploadedImageUrls,
       };
 
       if (editingProduct) {
