@@ -1,175 +1,186 @@
 <analysis>**original_problem_statement:**
-The user wants to create a standalone vendor application based on a reference GitHub repository. The original project contained both customer and vendor applications, which caused preview issues.
+The user's initial goal was to create a standalone vendor application from a reference project. The project evolved significantly into building a professional, high-quality, full-stack vendor panel inspired by platforms like Trendyol and Shopify.
 
 **PRODUCT REQUIREMENTS:**
-The goal is to build a completely new, standalone application *only for vendors* using the following tech stack:
-- **Frontend:** React Web with TypeScript (initially requested Expo React Native, but later confirmed React Web).
-- **Backend:** Node.js + Express + TypeScript (later changed to Python + FastAPI due to technical difficulties).
-- **Database:** MongoDB.
-
-The user provided a highly detailed specification for the application, including:
-1.  **Full UI/UX Overhaul:** A professional, high-quality redesign of the entire vendor panel, inspired by platforms like Trendyol, Hepsiburada, and Shopify. This includes a specific new color palette based on the user's logo, a new background color (), and modern UI components (shadows, gradients, rounded cards).
-2.  **Authentication:** JWT-based auth (access + refresh tokens) with a mandatory Tax ID document upload during registration. Vendor accounts must go through an approval flow (, , , ), with feature access restricted based on status.
-3.  **Dashboard:** A comprehensive dashboard with widgets for key metrics (revenue, orders), charts for sales trends, lists of recent orders, and low-stock products.
-4.  **Product Management:** Full CRUD functionality for products, including multi-image uploads, stock management, status toggling (Published/Unpublished), and product quality selection.
-5.  **Order Management:** A system to list, filter, and view details of orders. It must allow vendors to update order statuses (e.g., Preparing, On the Way, Delivered).
-6.  **Public Store Page:** A view for the vendor to see their public-facing store page as a customer would.
-7.  **Profile Management:** A detailed profile page for vendors to manage store information, contact details, working hours, and payment information (IBAN).
+1.  **Tech Stack:** React (CRA) + TypeScript frontend, connected to a separate, pre-existing FastAPI backend.
+2.  **UI/UX Overhaul:** A complete, professional redesign of the entire vendor panel with a specific color palette ( background,  text) and modern UI components. The logo must be integrated seamlessly.
+3.  **Authentication & Routing:** JWT-based login connected to the external backend, with role-based () access control and protected routes.
+4.  **Core Features:**
+    *   **Dashboard:** Comprehensive overview of sales and orders.
+    *   **Product Management:** Full CRUD for products.
+    *   **Order Management:** List, view, and manage orders.
+    *   **Profile Management:** Manage store and payment (IBAN) information.
+5.  **New Feature Requests (Massive Expansion):**
+    *   **Product Image Uploads:** Ability to add multiple photos when creating/editing a product.
+    *   **IBAN Management:** A dedicated section in the profile for vendors to add their bank account details for payouts.
+    *   **Get Directions for Orders:** A button on the order details page to open the customer's address in a map application.
+    *   **Campaigns & Discounts:** A system for vendors to create and manage product campaigns and discounts, inspired by Trendyol.
+    *   **Full Professional Suite:** The user requested a massive expansion to include:
+        *   Financial Management (Payments, Invoices)
+        *   Analytics & Reporting
+        *   Customer Communication (Reviews, Messages)
+        *   Help & Support Center
+        *   Advanced Product Features (Variants, Bundles)
+        *   Multi-Channel Sales (Instagram, Facebook, Google Shopping integration)
 
 **User's preferred language**: Turkish
 
 **what currently exists?**
-A complete full-stack application has been built.
--   **Backend:** A robust FastAPI (Python) application is running. It includes all required endpoints for authentication, vendor management, product CRUD, order management, and dashboard statistics. It connects to a MongoDB database.
--   **Frontend:** A complete React + TypeScript application has been built with all the necessary pages (Login, Register, Dashboard, Products, Orders, Profile) and components (Sidebar, Topbar). It is fully connected to the backend API.
--   **Data:** A demo vendor account has been created and the database has been seeded with sample products and orders.
--   **Styling:** A previous rebranding was completed, applying a logo and a color palette. However, this is now superseded by a new, more demanding design request.
+A functional React frontend application that is successfully connected to an external FastAPI backend. The UI has been significantly redesigned according to the user's specifications, including a new color scheme and a professional logo implementation. A persistent login/redirection issue has been resolved.
+
+The application includes the core pages (Login, Register, Dashboard, Products, Orders, Profile). In response to user requests, the agent has also created numerous placeholder pages and components for a massive feature expansion, including Analytics, Payments, Campaigns, Reviews, and more. The basic structure and routing for this expansion are in place, but the pages are currently empty shells.
 
 **Last working item**:
--   Last item agent was working: The agent acknowledged the user's latest and most significant request: a complete professional UI/UX overhaul of the entire frontend to match the quality of platforms like Trendyol and Shopify. The agent's first step was to update the Tailwind CSS configuration with the new, logo-compliant color palette. The user then provided a final tweak, requesting the background color be changed to .
+-   Last item agent was working: The agent was executing a massive feature expansion plan approved by the user. It had just created placeholder pages for Advanced Product Features () and Multi-Channel Sales () and added the corresponding links to the sidebar and application routes.
 -   Status: **IN PROGRESS**
 -   Agent Testing Done: N
--   Which testing method agent to use? **screenshot tool** (to verify the visual changes of the UI overhaul).
+-   Which testing method agent to use? **screenshot tool** (to verify new pages are accessible from the sidebar).
 -   User Testing Done: N
 
 **All Pending/In progress Issue list**:
--   Issue 1: (P0) A demo account was created, but the user reported a frontend crash () upon logging in and viewing the Dashboard. This was the last reported bug before the major redesign request.
-    -   **Attempted fixes:** The agent identified that the  object from the backend was sometimes undefined. A fix was implemented in  to add optional chaining () to prevent the crash. The backend endpoint was also updated to return a more complete data structure. The fix was successful and confirmed by the agent.
-    -   **Next debug checklist:** While the specific crash was fixed, the new redesign will involve rewriting this component. The next agent must ensure that all data fetched from the dashboard endpoint is handled safely with optional chaining or default values to prevent similar errors.
-    -   **Why fix this issue and what will be achieved with the fix?** Fixing this ensures the Dashboard, the first page after login, is functional and doesn't crash, providing a stable user experience.
-    -   **Status:** RESOLVED
+-   Issue 1: (P1) The backend integration for the **Product Photo Upload** feature is missing. The frontend UI for uploading files was added to the Add/Edit Product modal, but the logic to send the file(s) to the backend and store the image URLs has not been implemented.
+    -   **Attempted fixes:** None. The feature was requested, UI was built, but implementation was paused due to other user requests.
+    -   **Next debug checklist:**
+        1.  Confirm the external backend has an endpoint for file uploads (e.g., ).
+        2.  Update the  service to include a function for uploading files (likely using ).
+        3.  Modify the  function in  to first upload images, get their URLs, and then include those URLs in the product creation/update payload.
+    -   **Why fix this issue and what will be achieved with the fix?** This is a critical e-commerce feature. Completing it will allow vendors to manage product visuals.
+    -   **Status:** NOT STARTED
     -   **Is recurring issue?** N
-    -   Should Test frontend/backend/both after fix? Frontend
+    -   Should Test frontend/backend/both after fix? Both
+    -   Blocked on other issue: None.
+
+-   Issue 2: (P1) The backend integration for **saving IBAN information** is missing. The UI fields were added to the  page, but the functionality to persist this data via an API call is not implemented.
+    -   **Attempted fixes:** None. The feature was requested, UI was built, but implementation was paused.
+    -   **Next debug checklist:**
+        1.  Confirm the external backend's  endpoint accepts , , and  fields.
+        2.  Update the save handler in  to send these new fields in the API call payload.
+    -   **Why fix this issue and what will be achieved with the fix?** This is essential for vendor payouts, a core part of the business logic.
+    -   **Status:** NOT STARTED
+    -   **Is recurring issue?** N
+    -   Should Test frontend/backend/both after fix? Both
+    -   Blocked on other issue: None.
 
 **In progress Task List**:
--   Task 1: (P0) Complete UI/UX Overhaul for a Professional Vendor Panel
-    -   **Where to resume:** The agent has just updated the Tailwind config () with the new primary colors and acknowledged the user's request to set the background to . The next step is to apply this background color globally (likely in  or the main layout component) and then proceed with redesigning each component and page according to the user's detailed specifications.
-    -   **What will be achieved with this?** The application will be transformed from a functional MVP into a visually polished, professional, and commercially viable product that matches the user's high-quality design expectations.
+-   Task 1: (P0) Implement the complete suite of professional vendor panel features. The agent has created placeholder pages and must now build out the functionality for each.
+    -   **Where to resume:** The agent has created all the necessary files and routes. The next step is to pick the first feature from the list (e.g., Financial Management) and start building its UI and backend integration.
+    -   **What will be achieved with this?** This will transform the application from a basic CRUD app into a feature-rich, professional-grade platform that meets the user's Trendyol-level expectations.
     -   **Status:** IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?** Frontend (using screenshot tool)
-    -   **Blocked on something:** No
+    -   **Should Test frontend/backend/both after fix?** Both (incrementally for each feature)
+    -   **Blocked on something:** The capabilities of the external backend are unknown. The agent will need to assume or ask about API endpoints for each new feature.
 
 **Upcoming and Future Tasks**
-- **UI/UX Redesign Sub-tasks (P0):**
-    1.  **Global Styles:** Apply the new background color  and ensure the text colors (, ) are used consistently.
-    2.  **Dashboard Redesign:** Rework  to match the Trendyol/Shopify quality standard, using modern, shadowed card layouts.
-    3.  **Product Management Redesign:**
-        -   Update the product list in  to use status badges (green for published, gray for unpublished) and action menus.
-        -   Modify the Add/Edit Product form/modal to include fields for multi-photo upload, product quality selection (), and a View on Store button.
-    4.  **Public Store Page:** Create a new route and component for the Mağazamı Görüntüle (View My Store) page, which shows a public view of the vendor's profile and products.
-    5.  **Profile Page Redesign:** Overhaul  to include fields for IBAN, notification settings, and an improved layout for managing store details.
-    6.  **Animations & Polish:** Add smooth transitions and animations to enhance the user experience.
+-   **Upcoming Tasks (P0 - Part of the main In Progress Task):**
+    1.  **Financial Management:** Build out . Implement UI for viewing revenue, managing withdrawal requests, and seeing payment history.
+    2.  **Analytics & Raporlama:** Build out . Integrate  to display sales graphs and performance metrics.
+    3.  **Customer Communication:** Build out  and .
+    4.  **Campaigns:** Build out . Design the UI for creating/managing discounts and paid campaigns.
+    5.  **Advanced Product Features:** Build out  to handle variants (size, color) and product bundles.
+
+-   **Future Tasks (P1):**
+    *   Implement Dynamic Pricing (time-based, stock-based).
+    *   Implement Customer Segmentation (VIP customers, loyalty programs).
+    *   Implement Smart Stock Management (automated reorder suggestions, trend analysis).
+    *   Implement Multi-Channel Sales integrations in .
 
 **Completed work in this session**
-- **Backend Development (FastAPI):**
-  - Built a full-featured backend in .
-  - Implemented all API endpoints for Auth, Products, Orders, Dashboard, and Profile.
-  - Set up JWT authentication with middleware.
-  - Implemented vendor status checks to restrict API access.
-- **Frontend Development (React + TS):**
-  - Created the entire frontend application structure in .
-  - Built all pages: Login, Register, Dashboard, Products, Orders, Profile.
-  - Implemented routing using .
-  - Set up an authentication context () for managing user state.
-  - Created a dedicated API service layer ().
-- **Bug Fixes & Seeding:**
-  - Resolved a critical login failure by correcting the database name in the environment configuration and fixing MongoDB  serialization issues in API responses.
-  - Created a demo vendor account and seeded the database with sample products and orders via .
-  - Fixed a JavaScript runtime error () on the Dashboard page.
-- **Initial Rebranding:**
-  - Added the user's logo to the application.
-  - Applied a user-specified color palette across the entire frontend (this is now being replaced by the new design).
+-   **Architectural Shift:** Re-wired the entire frontend to connect to a new, external FastAPI backend, including updating API services, authentication context, and environment variables.
+-   **Login Flow:** Fixed a persistent login redirection bug, confirmed working by the testing agent.
+-   **UI/UX Overhaul:**
+    -   Applied the new global background color ().
+    -   Redesigned the Login/Register pages to have a modern, card-less look.
+    -   Vastly improved the logo's presentation on all pages, making it look integrated and professional.
+-   **Feature Implementation:**
+    -   Added a Get Directions button to the order details modal, which opens Google Maps.
+    -   Created placeholder pages, routes, and sidebar links for a massive expansion, including Payments, Analytics, Reviews, Campaigns, Help, and more.
+    -   Installed  and  in preparation for the Analytics page.
 
 **Earlier issues found/mentioned but not fixed**
-None. All reported issues were addressed and resolved.
+-   None. The agent has been diligent, but the user's rapid-fire requests have caused some partially implemented features (like image uploads and IBAN saving) to be left pending backend integration. These are captured in the Pending Issues list.
 
 **Known issue recurrence from previous fork**
-- **Issue recurrence in previous fork:** N/A
-- **Recurrence count:** N/A
-- **Status:** N/A
+-   None.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
-- **Backend:** FastAPI, Python, Motor (async MongoDB driver), JWT for authentication, Pydantic for data validation.
-- **Frontend:** React, TypeScript, Tailwind CSS, Axios, React Router, React Context API.
-- **Database:** MongoDB.
-- **Architecture:** Full-stack with a RESTful API separating the frontend and backend.
+-   **Frontend:** React, TypeScript, Create React App (CRA), Tailwind CSS, Axios, React Router, React Context API.
+-   **Backend:** Interfacing with an external FastAPI REST API.
+-   **Authentication:** JWT stored in localStorage, managed via Context API, and sent in an  header.
+-   **Routing:** Protected routes for authenticated users.
 
 **key DB schema**
--   **vendors**: , , , , ,  (, , , ),  etc.
--   **products**: , , , , , ,  (, ), , etc.
--   **orders**: , , ,  (array of products), ,  (, , etc.), .
+The agent is working against an external backend, so it has no direct access to the DB. It infers the schema from API responses:
+-   **user:** , ,  (, ), .
+-   **product:** , , , , , , .
+-   **order:** , , , , .
 
 **changes in tech stack**
-The project was initially planned with a Node.js/Express/TypeScript backend. Due to significant and time-consuming TypeScript compilation and dependency issues, a strategic decision was made, with user approval, to switch to a Python/FastAPI backend. The abandoned Node.js code still exists in  but is not used.
+-   The application was pivoted from using an integrated FastAPI backend () to a purely frontend application that consumes an external, pre-existing API. The local backend code is now obsolete.
 
 **All files of reference**
--   : The entire backend logic is contained in this single file.
--   : Contains  and .
--   : Updated with the new color palette for the redesign.
--   : The entire React application source code, which will be heavily modified during the redesign.
--   : Contains all the main page components to be redesigned.
--   : Contains the main layout components to be redesigned.
--   : Used to create the demo user and data.
+-   : Critical file defining the Axios instance and all API communication.
+-   : Manages user state, login/logout, and token persistence.
+-   : Protects routes from unauthenticated access.
+-   : Defines all application routes.
+-   : Contains navigation links that need to be kept in sync with new features.
+-   : Contains the  for the external backend.
+-   All new page files in .
 
 **Areas that need refactoring**:
-The entire  directory is the subject of the current task, which is a complete design and code refactoring to meet the user's new professional UI/UX standards.
+-   The  file is likely obsolete as it was designed for the local MongoDB and backend. It should be reviewed and potentially deleted.
+-   The  directory is unused and could be removed to avoid confusion.
 
 **key api endpoints**
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
-- 
+-   
+-   
+-   
+-   
+-   
+-   
+-   *(The agent will need to discover or be told the endpoints for all new features like campaigns, analytics, etc.)*
 
 **Critical Info for New Agent**
-- The backend is complete, stable, and built with FastAPI. Do not try to revert to Node.js.
-- The current and highest priority task is a **complete visual and structural overhaul of the frontend**. This is not a bug-fixing task but a major redesign based on the user's last two detailed messages.
-- All functional logic (API calls, state management) is already in place on the frontend; the task is to wrap this logic in a new, professional UI.
-- Use the new color palette and background color specified by the user. The primary reference for quality is Trendyol/Shopify Satıcı Paneli.
+-   **Massive Scope:** The user has requested an enormous number of features. The highest priority is to work through the list of new pages, implementing them one by one. Do not get sidetracked.
+-   **External Backend:** You are building a frontend against an existing API. You do not control the backend. For every new feature (Analytics, Payments, etc.), you must clarify the required API endpoints and data structures. Do not assume they exist.
+-   **Incremental Development:** Tackle one feature at a time. For example, fully implement the  page (UI, API connection, testing) before moving to .
+-   **Revisit Pending Features:** Before starting the brand new features, it would be wise to complete the backend integration for the already-started **Product Image Upload** and **IBAN Profile** features. These are smaller, critical wins.
 
 **documents created in this job**
-- : A Python script to seed the database with a demo vendor, products, and orders.
+-   , : Temporary test files that can now be deleted.
+-   Many new page component files under .
 
 **Last 10 User Messages and any pending user messages**
-1.  **User:** Reports a runtime error () on the dashboard after logging in with the demo account. (Pending)
-2.  **Agent:** Acknowledges the dashboard error.
-3.  **User:** Provides a very detailed request for a complete, professional UI/UX overhaul of the entire application, specifying a new color palette based on their logo and quality standards matching platforms like Trendyol/Shopify. (New Task)
-4.  **Agent:** Acknowledges the major redesign request and starts by updating the Tailwind config.
-5.  **User:** Provides a reference image and specifies the exact background color to use: . (Update to New Task)
-6.  **Agent:** Acknowledges the background color update and is ready to proceed with the redesign.
-7.  **User:** Asks for a demo account to log in. (Completed)
-8.  **User:** Reports that the demo account login is failing. (Resolved)
-9.  **User:** Reports the dashboard is crashing after the login fix. (Resolved)
-10. **User:** Provides a very detailed request for a complete UI/UX overhaul. (This is the current task)
-
-The most recent user requests (Messages 367 and 370) are the active task: a complete, professional redesign of the UI.
+1.  **User:** Asks to add a Get Directions button to orders. (Completed)
+2.  **User:** Complains that the logo looks pasted on. (Completed)
+3.  **User:** Gives feedback to make the logo container smaller. (Completed)
+4.  **User:** Gives final, specific feedback on the logo design. (Completed)
+5.  **User:** Requests a professional campaign and discount system like Trendyol. (In Progress - Placeholder page created)
+6.  **User:** Asks for more ideas to improve the panel. (Completed - Agent provided a list)
+7.  **User:** Approves the agent's list and says add all of them. (In Progress - Placeholder pages created)
+8.  **User:** Gives final approval to start the massive feature implementation. (In Progress)
+9.  **User:** Asks for even more features (variants, bundles, multi-channel sales). (In Progress - Placeholder pages created)
+10. **User:** Explicitly requests the addition of multi-channel sales integrations for Instagram, Facebook, Google Shopping, and WhatsApp. (In Progress)
 
 **Project Health Check:**
-- Broken: None
-- Mocked: None
+-   Broken: None. The core application is stable.
+-   Mocked: The vast majority of new features exist only as empty placeholder pages.
 
 **3rd Party Integrations**:
-None.
+-    & : Installed for the Analytics page, but not yet used.
 
 **Testing status**
-- Testing agent used after significant changes: NO
-- Troubleshoot agent used after agent stuck in loop: NO
-- Test files created:  was created for manual testing and data seeding.
-- Known regressions: None.
+-   Testing agent used after significant changes: YES, it was successfully used to diagnose and confirm the fix for the login flow.
+-   Troubleshoot agent used after agent stuck in loop: NO
+-   Test files created: None permanent.
+-   Known regressions: None.
 
 **Credentials to test flow:**
-A demo vendor was created to resolve the login issue. The credentials are:
 -   **Email:** 
 -   **Password:** 
 
 **What agent forgot to execute**
-The agent has been diligent in following user requests. The current task is to execute the very large and detailed UI redesign requested by the user in their last major messages. No prior tasks were forgotten.</analysis>
+-   The agent did not forget but had to postpone the full implementation of two features due to the user's shifting priorities:
+    1.  **Product Photo Upload:** The backend API call to handle the file upload was never implemented.
+    2.  **IBAN Profile Update:** The backend API call to save the IBAN details was never implemented.</analysis>
