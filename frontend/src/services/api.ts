@@ -81,6 +81,30 @@ export const productsAPI = {
   
   delete: (id: string) => 
     apiClient.delete(`/api/vendor/products/${id}`),
+  
+  // Image upload
+  uploadImage: (file: File) => {
+    const formData = new FormData();
+    formData.append('file', file);
+    return apiClient.post('/api/vendor/upload-image', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
+  
+  // Bulk image upload
+  uploadImages: (files: File[]) => {
+    const formData = new FormData();
+    files.forEach((file) => {
+      formData.append('files', file);
+    });
+    return apiClient.post('/api/vendor/upload-images', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  },
 };
 
 // Orders API
