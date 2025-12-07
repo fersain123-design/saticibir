@@ -16,6 +16,7 @@ interface Channel {
 }
 
 const MultiChannel: React.FC = () => {
+  const [loading, setLoading] = useState(true);
   const [channels, setChannels] = useState<Channel[]>([
     {
       id: 'instagram',
@@ -75,6 +76,32 @@ const MultiChannel: React.FC = () => {
 
   const [selectedChannel, setSelectedChannel] = useState<Channel | null>(null);
   const [showSetupModal, setShowSetupModal] = useState(false);
+  const [setupFormData, setSetupFormData] = useState<any>({});
+
+  useEffect(() => {
+    fetchChannels();
+  }, []);
+
+  const fetchChannels = async () => {
+    try {
+      setLoading(true);
+      const response = await multiChannelAPI.getChannels();
+      if (response.data?.channels) {
+        // Merge backend data with default channels
+        const backendChannels = response.data.channels;
+        const updatedChannels = channels.map(ch => {
+          const backendChannel = backendChannels.find((bc: any) => bc.id === ch.id);
+          return backendChannel ? { ...ch, ...backendChannel } : ch;
+        });
+        setChannels(updatedChannels);
+      }
+    } catch (error) {
+      console.error('Error fetching channels:', error);
+      // Continue with default channels if API fails
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getStatusBadge = (status: string) => {
     switch (status) {
