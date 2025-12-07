@@ -125,4 +125,28 @@ export const dashboardAPI = {
     apiClient.get('/api/vendor/dashboard'),
 };
 
+// Multi-Channel API
+export const multiChannelAPI = {
+  getChannels: () => 
+    apiClient.get('/api/vendor/channels'),
+  
+  activateChannel: (channelId: string, data: any) => 
+    apiClient.post(`/api/vendor/channels/${channelId}/activate`, data),
+  
+  deactivateChannel: (channelId: string) => 
+    apiClient.post(`/api/vendor/channels/${channelId}/deactivate`),
+};
+
+// Inventory/Smart Stock API
+export const inventoryAPI = {
+  getAlerts: () => 
+    apiClient.get('/api/vendor/inventory/alerts'),
+  
+  getPredictions: () => 
+    apiClient.get('/api/vendor/inventory/predictions'),
+  
+  getTrends: () => 
+    apiClient.get('/api/vendor/inventory/trends'),
+};
+
 export default apiClient;
