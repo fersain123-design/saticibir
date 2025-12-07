@@ -119,17 +119,30 @@ const MultiChannel: React.FC = () => {
     setShowSetupModal(true);
   };
 
-  const handleSetupComplete = () => {
-    if (selectedChannel) {
+  const handleSetupComplete = async () => {
+    if (!selectedChannel) return;
+
+    try {
+      setLoading(true);
+      await multiChannelAPI.activateChannel(selectedChannel.id, setupFormData);
+      
+      // Update local state
       setChannels(
         channels.map((ch) =>
-          ch.id === selectedChannel.id ? { ...ch, status: 'active' } : ch
+          ch.id === selectedChannel.id ? { ...ch, status: 'active' as const } : ch
         )
       );
+      
       alert(`${selectedChannel.name} başarıyla aktifleştirildi!`);
+      setShowSetupModal(false);
+      setSelectedChannel(null);
+      setSetupFormData({});
+    } catch (error: any) {
+      console.error('Error activating channel:', error);
+      alert(error.response?.data?.detail || 'Kanal aktifleştirilemedi. Lütfen tekrar deneyin.');
+    } finally {
+      setLoading(false);
     }
-    setShowSetupModal(false);
-    setSelectedChannel(null);
   };
 
   const totalActiveChannels = channels.filter((ch) => ch.status === 'active').length;
