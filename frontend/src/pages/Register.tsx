@@ -266,16 +266,6 @@ const Register: React.FC = () => {
                   />
                 </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-text-primary mb-2">Vergi Dairesi</label>
-                <input
-                  type="text"
-                  name="tax_office"
-                  value={formData.tax_office}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 bg-white border-2 border-primary/30 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all"
-                />
-              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-text-primary mb-2">İl *</label>
