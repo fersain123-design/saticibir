@@ -14,6 +14,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     { path: '/products-advanced', icon: '🎨', label: 'Gelişmiş Ürünler' },
     { path: '/products', icon: '📦', label: 'Ürünler' },
     { path: '/orders', icon: '🛒', label: 'Siparişler' },
+    { path: '/smart-inventory', icon: '🤖', label: 'Akıllı Stok' },
     { path: '/campaigns', icon: '🎯', label: 'Kampanyalar' },
     { path: '/multi-channel', icon: '🌐', label: 'Çok Kanallı Satış' },
     { path: '/payments', icon: '💰', label: 'Ödemeler' },
