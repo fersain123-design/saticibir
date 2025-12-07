@@ -106,11 +106,11 @@ const MultiChannel: React.FC = () => {
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'active':
-        return <span className=\"px-3 py-1 bg-success/20 text-success text-xs font-semibold rounded-full\">✓ Aktif</span>;
+        return <span className="px-3 py-1 bg-success/20 text-success text-xs font-semibold rounded-full">✓ Aktif</span>;
       case 'pending':
-        return <span className=\"px-3 py-1 bg-warning/20 text-warning text-xs font-semibold rounded-full\">⏳ Hazırlanıyor</span>;
+        return <span className="px-3 py-1 bg-warning/20 text-warning text-xs font-semibold rounded-full">⏳ Hazırlanıyor</span>;
       default:
-        return <span className=\"px-3 py-1 bg-gray-200 text-gray-600 text-xs font-semibold rounded-full\">○ Pasif</span>;
+        return <span className="px-3 py-1 bg-gray-200 text-gray-600 text-xs font-semibold rounded-full">○ Pasif</span>;
     }
   };
 
