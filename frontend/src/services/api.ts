@@ -54,6 +54,12 @@ export const authAPI = {
   
   getMe: () => 
     apiClient.get('/api/vendor/me'),
+  
+  changePassword: (currentPassword: string, newPassword: string) =>
+    apiClient.put('/api/vendor/change-password', {
+      current_password: currentPassword,
+      new_password: newPassword,
+    }),
 };
 
 // Vendor API
