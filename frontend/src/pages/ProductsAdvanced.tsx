@@ -108,9 +108,27 @@ const ProductsAdvanced: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Ürün kaydedildi! (Backend entegrasyonu için hazır)');
-    setShowModal(false);
-    resetForm();
+    try {
+      const data = {
+        ...formData,
+        price: parseFloat(formData.price),
+        stock: parseInt(formData.stock),
+        variants: variants,
+      };
+
+      if (editingProduct) {
+        await productsAPI.update(editingProduct.id, data);
+      } else {
+        await productsAPI.create(data);
+      }
+
+      alert('Ürün başarıyla kaydedildi!');
+      setShowModal(false);
+      resetForm();
+      fetchProducts();
+    } catch (err: any) {
+      alert(err.response?.data?.detail || 'İşlem başarısız oldu');
+    }
   };
 
   const resetForm = () => {
